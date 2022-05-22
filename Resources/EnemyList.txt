@@ -1,0 +1,6 @@
+Wolf 25 10 15 2 10 15 Claws Howl Regenerate Growl
+Bandit 35 15 50 1 25 15 Greatsword Dagger Rally Rage
+Kobold 23 20 0 3 25 20 Spear Kobold_Regeneration Rally Focus
+Ooze 30 0 50 1 0 10 Slam Slime_Toss Regenerate Absorb
+Zombie 29 5 25 3 0 10 Claws Howl Regenerate Slam
+Dragon 50 5 50 4 0 2 Fire_Breath Claws Claws Claws
