@@ -1,0 +1,13 @@
+Choose a class
+Paladin Monk Sorcerer or Barbarian
+Paladin gets buffs from alternating between attacks and buffs
+Monk gets buffed by using the same ability each round and then gets a big burst buff when they switch abilities
+Sorcerer alternates from a random buff to a random debuff
+Barbarian gets buffed from the more %missing health they have
+Pick An Item
+Healing Potion: Max 6 Heal, minimum 1 Heal
+Sword: Max 8 Slash damage, Minimum 1 Slash damage
+Fire Sword: Max 8 Fire damage, Minimum 1 Fire damage
+Claws: Max 4 Slash damage, Minimum 1 Slash damage
+Strength Potion: Max 6 DamageBuff, minimum 1 DamageBuff
+Spear: Max 10 Poke damage, Minimum 1 Poke damage
