@@ -1,3 +1,5 @@
+package Game;
+
 
 import java.awt.Window;
 //import javafx.scene.effect.Light;
