@@ -16,15 +16,15 @@ import javax.swing.JPanel;
 
 public class View extends JFrame{
 
-    private JPanel userPanel = new JPanel();
-    private JLabel uName = new JLabel("Username: ");
+    private JPanel startScreen = new JPanel();
+    private JLabel title = new JLabel("Username: ");
     
     public View() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setLocationRelativeTo(null);
-        this.userPanel.add(uName);
-        this.add(userPanel);
+        this.startScreen.add(title);
+        this.add(startScreen);
         this.setVisible(true);
         System.out.println("AMONG US");
     }
