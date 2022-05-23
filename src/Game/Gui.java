@@ -12,7 +12,6 @@ package Game;
  */
 public class Gui {
     public static void main(String[] args) {
-        System.out.println("AMONGUS");
         View view = new View();
     }
 }
