@@ -17,12 +17,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 
 public class View extends JFrame{
 
+    private GameLog log;
+    
     private JLayeredPane startScreen = new JLayeredPane();
     private JLabel title = new JLabel("Game Name");
     
@@ -37,6 +42,8 @@ public class View extends JFrame{
     private JButton sorcerer = new JButton("Sorcerer");
     
     public View() {
+        this.log = new GameLog();
+        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setLocationRelativeTo(null);
@@ -45,9 +52,9 @@ public class View extends JFrame{
         this.title.setSize(150, 150);
         this.title.setLocation(200, 0);
         
-        this.startButton.setSize(75,30);
-        this.startButton.setText("START");
-        this.startButton.setLocation(205, 150);
+        this.startButton.setSize(100,30);
+        this.startButton.setText("Start Game");
+        this.startButton.setLocation(200, 150);
         
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
         this.backgroundImage.setSize(500, 500);
@@ -61,14 +68,16 @@ public class View extends JFrame{
         
         this.add(startScreen);
         this.setVisible(true);
-        System.out.println("AMONG US");
     }
     
     public void UnloadStartMenu(){
-        
+        log.Log("Start Menu unloaded");
+        this.startScreen.setVisible(false);
     }
     
     public void LoadClassSelect(){
+        log.Log("Character select loaded");
+        
         this.barbarian.setSize(75, 30);
         this.monk.setSize(75, 30);
         this.paladin.setSize(75, 30);
@@ -77,4 +86,13 @@ public class View extends JFrame{
         this.barbarian.setLocation(100, 300);
     }
     
+    public void addActionListener(ActionListener listener){
+        this.startButton.addActionListener(listener);
+//        this.barbarian.addActionListener(listener);
+    }
+    
+//    @Override
+//    public void update(Observable o, Object arg){
+//        
+//    }
 }
