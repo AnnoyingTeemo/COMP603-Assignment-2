@@ -29,6 +29,13 @@ public class View extends JFrame{
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
     
+    //Select class
+    private JLayeredPane classSelect = new JLayeredPane();
+    private JButton barbarian = new JButton("Barbarian");
+    private JButton monk = new JButton("Monk");
+    private JButton paladin = new JButton("Paladin");
+    private JButton sorcerer = new JButton("Sorcerer");
+    
     public View() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 500);
@@ -55,6 +62,19 @@ public class View extends JFrame{
         this.add(startScreen);
         this.setVisible(true);
         System.out.println("AMONG US");
+    }
+    
+    public void UnloadStartMenu(){
+        
+    }
+    
+    public void LoadClassSelect(){
+        this.barbarian.setSize(75, 30);
+        this.monk.setSize(75, 30);
+        this.paladin.setSize(75, 30);
+        this.sorcerer.setSize(75, 30);
+        
+        this.barbarian.setLocation(100, 300);
     }
     
 }
