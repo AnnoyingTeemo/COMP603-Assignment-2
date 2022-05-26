@@ -45,19 +45,19 @@ public class View extends JFrame{
         this.log = new GameLog();
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         Font font = new Font("Comic Sans", Font.BOLD, 15);
         this.title.setFont(font);
         this.title.setSize(150, 150);
-        this.title.setLocation(200, 0);
+        this.title.setLocation(235, 0);
         
         this.startButton.setSize(100,30);
         this.startButton.setText("Start Game");
-        this.startButton.setLocation(200, 150);
+        this.startButton.setLocation(235, 150);
         
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
-        this.backgroundImage.setSize(500, 500);
+        this.backgroundImage.setSize(600, 600);
         
         this.startScreen.add(title);
         this.startScreen.add(startButton);
@@ -78,17 +78,27 @@ public class View extends JFrame{
     public void LoadClassSelect(){
         log.Log("Character select loaded");
         
-        this.barbarian.setSize(75, 30);
-        this.monk.setSize(75, 30);
-        this.paladin.setSize(75, 30);
-        this.sorcerer.setSize(75, 30);
+        this.barbarian.setSize(100, 30);
+        this.monk.setSize(100, 30);
+        this.paladin.setSize(100, 30);
+        this.sorcerer.setSize(100, 30);
         
-        this.barbarian.setLocation(100, 300);
+        this.barbarian.setLocation(50, 300);
+        this.monk.setLocation(175, 300);
+        this.paladin.setLocation(300,300);
+        this.sorcerer.setLocation(425,300);
+        
+        this.classSelect.add(barbarian);
+        this.classSelect.add(monk);
+        this.classSelect.add(paladin);
+        this.classSelect.add(sorcerer);
+        
+        this.add(classSelect);
     }
     
     public void addActionListener(ActionListener listener){
         this.startButton.addActionListener(listener);
-//        this.barbarian.addActionListener(listener);
+        this.barbarian.addActionListener(listener);
     }
     
 //    @Override
