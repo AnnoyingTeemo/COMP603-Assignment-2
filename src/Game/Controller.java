@@ -7,6 +7,7 @@ package Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -59,15 +60,17 @@ public class Controller implements ActionListener{
             playerClass = "Sorcerer";
         }
         
-        
-        if (command.equals(view.weapon1.getText())){
-            if (item1 == null){
-                item1 = itemList.GetItemByName(view.weapon1.getText());
-                view.weapon1.setVisible(false);
-            }
-            else{
-                item2 = itemList.GetItemByName(view.weapon1.getText());
-                game.SetPlayerClass(selectClass());
+        for (JButton button: view.weaponButtonList){
+            if (command.equals(button.getText())){
+                if (item1 == null){
+                    item1 = itemList.GetItemByName(button.getText());
+                    button.setVisible(false);
+                }
+                else{
+                    item2 = itemList.GetItemByName(button.getText());
+                    game.SetPlayerClass(selectClass());
+                    view.UnloadWeaponSelect();
+                }
             }
         }
     }

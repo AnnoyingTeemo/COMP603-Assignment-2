@@ -53,7 +53,7 @@ public class View extends JFrame{
     public JButton weapon4 = new JButton("BUTTON 4");
     public JButton weapon5 = new JButton("BUTTON 5");
     public JButton weapon6 = new JButton("BUTTON 6");
-    ArrayList<JButton> weaponButtonList = new ArrayList<JButton>();
+    public ArrayList<JButton> weaponButtonList = new ArrayList<JButton>();
     
     public View() {
         this.log = new GameLog();
@@ -144,7 +144,6 @@ public class View extends JFrame{
         ArrayList<String> randomItems = itemList.ReturnRandomList(6);
         
         for (int i = 0; i < weaponButtonList.size(); i++){
-            System.out.println(itemList.GetItem(PROPERTIES));
             weaponButtonList.get(i).setText(randomItems.get(i));
         }
         
@@ -157,14 +156,25 @@ public class View extends JFrame{
         this.add(weaponsSelect);
     }
     
+    public void UnloadWeaponSelect(){
+        log.Log("Weapon Select unloaded");
+        this.weaponsSelect.setVisible(false);
+    }
+    
     public void addActionListener(ActionListener listener){
         this.startButton.addActionListener(listener);
         this.barbarian.addActionListener(listener);
         this.monk.addActionListener(listener);
         this.paladin.addActionListener(listener);
         this.sorcerer.addActionListener(listener);
-        this.weapon1.addActionListener(listener);
+        
+        for (int i = 0; i < weaponButtonList.size(); i++){
+            weaponButtonList.get(i).addActionListener(listener);
+        }
+        
     }
+    
+    
     
 //    @Override
 //    public void update(Observable o, Object arg){

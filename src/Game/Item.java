@@ -136,5 +136,5 @@ public abstract class Item {
 
     public void setDamageItem(boolean damageItem) {
         this.damageItem = damageItem;
-    }    
+    }
 }
