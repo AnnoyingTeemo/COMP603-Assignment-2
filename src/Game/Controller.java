@@ -14,9 +14,11 @@ import java.awt.event.ActionListener;
  */
 public class Controller implements ActionListener{
     public View view;
+    public Game game;
 
-    public Controller(View view) {
+    public Controller(View view, Game game) {
         this.view = view;
+        this.game = game;
         this.view.addActionListener(this);
     }
     
@@ -30,6 +32,11 @@ public class Controller implements ActionListener{
         if (command.equals("Start Game")){
             view.UnloadStartMenu();
             view.LoadClassSelect();
+        }
+        if (command.equals("Barbarian")){
+            view.UnloadClassSelect();
+            view.LoadWeaponSelect();
+//            game.SetPlayerClass(new Barbarian());
         }
     }
 }

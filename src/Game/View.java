@@ -41,9 +41,18 @@ public class View extends JFrame{
     private JButton paladin = new JButton("Paladin");
     private JButton sorcerer = new JButton("Sorcerer");
     
+    //Select weapons
+    private JLayeredPane weaponsSelect = new JLayeredPane();
+    private JButton weapon1 = new JButton("BUTTON 1");
+    private JButton weapon2 = new JButton("BUTTON 2");
+    private JButton weapon3 = new JButton("BUTTON 3");
+    private JButton weapon4 = new JButton("BUTTON 4");
+    private JButton weapon5 = new JButton("BUTTON 5");
+    private JButton weapon6 = new JButton("BUTTON 6");
+    
     public View() {
         this.log = new GameLog();
-        
+        this.log.LogCount();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
@@ -96,9 +105,21 @@ public class View extends JFrame{
         this.add(classSelect);
     }
     
+    public void UnloadClassSelect(){
+        log.Log("Character Select Unloaded");
+        this.classSelect.setVisible(false);
+    }
+    
+    public void LoadWeaponSelect(){
+        log.Log("Weapon Select Unloaded");
+    }
+    
     public void addActionListener(ActionListener listener){
         this.startButton.addActionListener(listener);
         this.barbarian.addActionListener(listener);
+        this.monk.addActionListener(listener);
+        this.paladin.addActionListener(listener);
+        this.sorcerer.addActionListener(listener);
     }
     
 //    @Override
