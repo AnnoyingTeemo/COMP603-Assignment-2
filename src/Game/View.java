@@ -111,7 +111,22 @@ public class View extends JFrame{
     }
     
     public void LoadWeaponSelect(){
-        log.Log("Weapon Select Unloaded");
+        log.Log("Weapon Select loaded");
+        this.weapon1.setSize(100, 30);
+        this.weapon2.setSize(100, 30);
+        this.weapon3.setSize(100, 30);
+        this.weapon4.setSize(100, 30);
+        this.weapon5.setSize(100, 30);
+        this.weapon6.setSize(100, 30);
+        
+        this.weapon1.setLocation(50, 200);
+        this.weapon2.setLocation(250, 200);
+        this.weapon3.setLocation(450, 200);
+        
+        this.weaponsSelect.add(weapon1);
+        this.weaponsSelect.add(weapon2);
+        this.weaponsSelect.add(weapon3);
+        this.add(weaponsSelect);
     }
     
     public void addActionListener(ActionListener listener){
