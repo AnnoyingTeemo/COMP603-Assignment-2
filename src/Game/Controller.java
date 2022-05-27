@@ -15,19 +15,24 @@ import java.awt.event.ActionListener;
 public class Controller implements ActionListener{
     public View view;
     public Game game;
+    public ItemList itemList;
 
+    private Item item1;
+    private Item item2;
+    
+    private String playerClass = "";
+    
     public Controller(View view, Game game) {
         this.view = view;
         this.game = game;
         this.view.addActionListener(this);
+        this.itemList = new ItemList();
     }
     
     
     @Override
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
-        
-        System.out.println(command);
         
         if (command.equals("Start Game")){
             view.UnloadStartMenu();
@@ -36,7 +41,44 @@ public class Controller implements ActionListener{
         if (command.equals("Barbarian")){
             view.UnloadClassSelect();
             view.LoadWeaponSelect();
-//            game.SetPlayerClass(new Barbarian());
+            playerClass = "Barbarian";
+        }
+        if (command.equals("Monk")){
+            view.UnloadClassSelect();
+            view.LoadWeaponSelect();
+            playerClass = "Monk";
+        }
+        if (command.equals("Paladin")){
+            view.UnloadClassSelect();
+            view.LoadWeaponSelect();
+            playerClass = "Paladin";
+        }
+        if (command.equals("Sorcerer")){
+            view.UnloadClassSelect();
+            view.LoadWeaponSelect();
+            playerClass = "Sorcerer";
+        }
+        
+        
+        if (command.equals(view.weapon1.getText())){
+            if (item1 == null){
+                item1 = itemList.GetItemByName(view.weapon1.getText());
+                view.weapon1.setVisible(false);
+            }
+            else{
+                item2 = itemList.GetItemByName(view.weapon1.getText());
+                game.SetPlayerClass(selectClass());
+            }
+        }
+    }
+    
+    public Ally selectClass(){
+        if (playerClass.equals("Barbarian")){
+            return new Barbarian(item1, item2);
+        }
+        else if ()
+        else{
+            return null;
         }
     }
 }

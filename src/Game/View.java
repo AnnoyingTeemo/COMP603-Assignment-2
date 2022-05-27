@@ -43,12 +43,12 @@ public class View extends JFrame{
     
     //Select weapons
     private JLayeredPane weaponsSelect = new JLayeredPane();
-    private JButton weapon1 = new JButton("BUTTON 1");
-    private JButton weapon2 = new JButton("BUTTON 2");
-    private JButton weapon3 = new JButton("BUTTON 3");
-    private JButton weapon4 = new JButton("BUTTON 4");
-    private JButton weapon5 = new JButton("BUTTON 5");
-    private JButton weapon6 = new JButton("BUTTON 6");
+    public JButton weapon1 = new JButton("BUTTON 1");
+    public JButton weapon2 = new JButton("BUTTON 2");
+    public JButton weapon3 = new JButton("BUTTON 3");
+    public JButton weapon4 = new JButton("BUTTON 4");
+    public JButton weapon5 = new JButton("BUTTON 5");
+    public JButton weapon6 = new JButton("BUTTON 6");
     
     public View() {
         this.log = new GameLog();
@@ -122,10 +122,18 @@ public class View extends JFrame{
         this.weapon1.setLocation(50, 200);
         this.weapon2.setLocation(250, 200);
         this.weapon3.setLocation(450, 200);
+        this.weapon4.setLocation(50, 300);
+        this.weapon5.setLocation(250, 300);
+        this.weapon6.setLocation(450, 300);
+        
+        this.weapon1.setText("Sword");
         
         this.weaponsSelect.add(weapon1);
         this.weaponsSelect.add(weapon2);
         this.weaponsSelect.add(weapon3);
+        this.weaponsSelect.add(weapon4);
+        this.weaponsSelect.add(weapon5);
+        this.weaponsSelect.add(weapon6);
         this.add(weaponsSelect);
     }
     
@@ -135,6 +143,7 @@ public class View extends JFrame{
         this.monk.addActionListener(listener);
         this.paladin.addActionListener(listener);
         this.sorcerer.addActionListener(listener);
+        this.weapon1.addActionListener(listener);
     }
     
 //    @Override
