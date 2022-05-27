@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -27,12 +29,14 @@ import javax.swing.SwingConstants;
 public class View extends JFrame{
 
     private GameLog log;
+    private ItemList itemList;
     
     private JLayeredPane startScreen = new JLayeredPane();
     private JLabel title = new JLabel("Game Name");
     
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
+    private JButton loadSaveButton = new JButton("Load Save");
     
     //Select class
     private JLayeredPane classSelect = new JLayeredPane();
@@ -49,10 +53,13 @@ public class View extends JFrame{
     public JButton weapon4 = new JButton("BUTTON 4");
     public JButton weapon5 = new JButton("BUTTON 5");
     public JButton weapon6 = new JButton("BUTTON 6");
+    ArrayList<JButton> weaponButtonList = new ArrayList<JButton>();
     
     public View() {
         this.log = new GameLog();
         this.log.LogCount();
+        this.itemList = new ItemList();
+        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
@@ -77,6 +84,13 @@ public class View extends JFrame{
         
         this.add(startScreen);
         this.setVisible(true);
+        
+        this.weaponButtonList.add(weapon1);
+        this.weaponButtonList.add(weapon2);
+        this.weaponButtonList.add(weapon3);
+        this.weaponButtonList.add(weapon4);
+        this.weaponButtonList.add(weapon5);
+        this.weaponButtonList.add(weapon6);
     }
     
     public void UnloadStartMenu(){
@@ -112,21 +126,27 @@ public class View extends JFrame{
     
     public void LoadWeaponSelect(){
         log.Log("Weapon Select loaded");
-        this.weapon1.setSize(100, 30);
-        this.weapon2.setSize(100, 30);
-        this.weapon3.setSize(100, 30);
-        this.weapon4.setSize(100, 30);
-        this.weapon5.setSize(100, 30);
-        this.weapon6.setSize(100, 30);
         
-        this.weapon1.setLocation(50, 200);
-        this.weapon2.setLocation(250, 200);
-        this.weapon3.setLocation(450, 200);
-        this.weapon4.setLocation(50, 300);
-        this.weapon5.setLocation(250, 300);
-        this.weapon6.setLocation(450, 300);
+        this.weapon1.setSize(140, 30);
+        this.weapon2.setSize(140, 30);
+        this.weapon3.setSize(140, 30);
+        this.weapon4.setSize(140, 30);
+        this.weapon5.setSize(140, 30);
+        this.weapon6.setSize(140, 30);
         
-        this.weapon1.setText("Sword");
+        this.weapon1.setLocation(25, 200);
+        this.weapon2.setLocation(225, 200);
+        this.weapon3.setLocation(425, 200);
+        this.weapon4.setLocation(25, 300);
+        this.weapon5.setLocation(225, 300);
+        this.weapon6.setLocation(425, 300);
+        
+        ArrayList<String> randomItems = itemList.ReturnRandomList(6);
+        
+        for (int i = 0; i < weaponButtonList.size(); i++){
+            System.out.println(itemList.GetItem(PROPERTIES));
+            weaponButtonList.get(i).setText(randomItems.get(i));
+        }
         
         this.weaponsSelect.add(weapon1);
         this.weaponsSelect.add(weapon2);

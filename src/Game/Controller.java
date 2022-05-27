@@ -76,7 +76,15 @@ public class Controller implements ActionListener{
         if (playerClass.equals("Barbarian")){
             return new Barbarian(item1, item2);
         }
-        else if ()
+        else if (playerClass.equals("Monk")){
+            return new Monk(item1, item2);
+        }
+        else if (playerClass.equals("Paladin")){
+            return new Paladin(item1, item2);
+        }
+        else if (playerClass.equals("Sorcerer")){
+            return new Sorcerer(item1, item2);
+        }
         else{
             return null;
         }

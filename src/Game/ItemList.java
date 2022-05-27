@@ -78,25 +78,25 @@ public class ItemList {
         return this.itemList.get(0);
     }
     //Returns a random hashset of items to be used in item selection by the player
-    public HashSet<String> ReturnRandomList(int numberOfItems){
-        HashSet<String> itemHashList = new HashSet<String>();
+    public ArrayList<String> ReturnRandomList(int numberOfItems){
+        ArrayList<String> itemArrayList = new ArrayList<String>();
         
         if (numberOfItems > this.itemList.size() - unuseableWeapons){
             numberOfItems = this.itemList.size() - 1;
         }
         
-        while (itemHashList.size() < numberOfItems){
+        while (itemArrayList.size() < numberOfItems){
             int max = this.itemList.size() -1 ;
             int min = unuseableWeapons;
             int range = max - min + 1;
 
             Item tryItem = this.itemList.get((int)(Math.random() * range) + min);
 
-            if (!itemHashList.contains(tryItem)){
-                itemHashList.add(tryItem.getItemName());
+            if (!itemArrayList.contains(tryItem.getItemName())){
+                itemArrayList.add(tryItem.getItemName());
             }
         }
         
-        return itemHashList;
+        return itemArrayList;
     }
 }
