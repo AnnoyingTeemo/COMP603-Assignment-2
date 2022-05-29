@@ -18,7 +18,7 @@ import java.sql.Statement;
  */
 public class Database {
     Connection conn = null;
-    String url = "jdbc:derby:RPG;create=true";  //url of the DB host
+    String url = "jdbc:derby:database\\RPG;create=true";  //url of the DB host
     //jdbc:derby://localhost:1527/Assesment2
     String dbusername = "rpg";  //your DB username
     String dbpassword = "rpg";   //your DB password
@@ -30,13 +30,16 @@ public class Database {
             String tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
-                statement.executeUpdate("CREATE TABLE " + tableName + " (userid VARCHAR(12), password VARCHAR(12)");
+                String query = "CREATE TABLE \"" + tableName + "\" (userid VARCHAR(12), password VARCHAR(12))";
+                System.out.println(query);
+                statement.executeUpdate(query);
             }
             //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
 
-        } catch (Throwable e) {
-            System.out.println("error");
+        } catch (Exception e) {
+            e.printStackTrace();
+//            System.out.println(e.printStackTrace());
         }
     }
     
