@@ -30,7 +30,7 @@ public class Database {
             String tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (userid VARCHAR(12), password VARCHAR(12))";
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24))";
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
