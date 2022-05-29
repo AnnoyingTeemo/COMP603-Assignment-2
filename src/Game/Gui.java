@@ -14,6 +14,7 @@ public class Gui {
     public static void main(String[] args) {
         View view = new View();
         Game game = new Game();
+        Model model = new Model();
         Controller controller = new Controller(view, game);
     }
 }
