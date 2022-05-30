@@ -30,7 +30,7 @@ public class Database {
             String tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(12), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(12), weapon2 VARCHAR(12), classDamage VARCHAR(12), classDefensive VARCHAR(12), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT)";
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(24), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(24), weapon2 VARCHAR(24), classDamage VARCHAR(24), classDefensive VARCHAR(24), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
@@ -38,7 +38,7 @@ public class Database {
             tableName = "EnemySaves";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), name VARCHAR(12), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, item1 VARCHAR(12), item2 VARCHAR(12), item3 VARCHAR(12), item4 VARCHAR(12), damageReductionBoost INT, damageBoost INT)";
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), name VARCHAR(24), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, item1 VARCHAR(24), item2 VARCHAR(24), item3 VARCHAR(24), item4 VARCHAR(24), damageReductionBoost INT, damageBoost INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
@@ -46,17 +46,21 @@ public class Database {
             tableName = "EnemyList";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (name VARCHAR(12), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, item1 VARCHAR(12), item2 VARCHAR(12), item3 VARCHAR(12), item4 VARCHAR(12))";
+                String query = "CREATE TABLE \"" + tableName + "\" (name VARCHAR(24), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, item1 VARCHAR(24), item2 VARCHAR(24), item3 VARCHAR(24), item4 VARCHAR(24))";
                 System.out.println(query);
                 statement.executeUpdate(query);
+                
+                fillEnemyDatabase();
             }
             
             tableName = "ItemList";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(12), maxRoll INT, minRoll INT, buffType VARCHAR(12), damageType VARCHAR(12))";
+                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24))";
                 System.out.println(query);
                 statement.executeUpdate(query);
+                
+                fillItemDatabase();
             }
             //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
@@ -88,5 +92,54 @@ public class Database {
         } catch (SQLException ex) {
         }
         return flag;
+    }
+    
+    public void fillItemDatabase(){
+        System.out.println("Filling Database");
+        
+        ItemList itemList = new ItemList();
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"ItemList\"";
+            
+            for (Item item : itemList.getList()){
+                if (item.isDamageItem()){
+                    String query = "INSERT INTO " + tableName + " VALUES(1, '" + item.getItemName() + "', " + item.getBaseDamageMaxRoll()+ ", " + item.getBaseDamageMinRoll()+ ", NULL, '" + item.getDamageType().toString() + "')";
+                    System.out.println(query);
+                    statement.executeUpdate(query);
+                }
+                else{
+                    String query = "INSERT INTO " + tableName + " VALUES(0, '" + item.getItemName() + "', " + item.getBaseBuffMaxRoll()+ ", " + item.getBaseBuffMinRoll()+ ", '" + item.getBuffType().toString() + "', NULL)";
+                    System.out.println(query);
+                    statement.executeUpdate(query);
+                }
+            }
+            statement.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void fillEnemyDatabase(){
+        System.out.println("Filling Database");
+        
+        EnemyList enemyList = new EnemyList();
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"EnemyList\"";
+            
+            for (Enemy enemy : enemyList.getList()){
+                String query = "INSERT INTO " + tableName + " VALUES('" + enemy.getName()+ "', " + enemy.getHealth()+ ", " + enemy.getDodge()+ ", " + enemy.getDamageReduction()+ ", " + enemy.getDamageModifier()+ ", " + enemy.getSpeed()+ ", " + enemy.getCritChance()+ ", '" + enemy.getItem1().getItemName()+ "', '" + enemy.getItem2().getItemName()+ "', '" + enemy.getItem3().getItemName()+ "', '" + enemy.getItem4().getItemName()+ "')";
+                System.out.println(query);
+                statement.executeUpdate(query);
+            }
+            statement.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

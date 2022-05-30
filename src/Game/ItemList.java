@@ -99,4 +99,8 @@ public class ItemList {
         
         return itemArrayList;
     }
+    
+    public ArrayList<Item> getList(){
+        return this.itemList;
+    }
 }
