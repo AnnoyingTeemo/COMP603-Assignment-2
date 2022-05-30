@@ -15,5 +15,6 @@ public class Model {
     public Model() {
         this.db = new Database();
         this.db.dbsetup();
+        this.db.getItemList();
     }
 }

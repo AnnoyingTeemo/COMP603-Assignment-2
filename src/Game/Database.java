@@ -56,7 +56,7 @@ public class Database {
             tableName = "ItemList";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24))";
+                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24), playerWeapon INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
                 
@@ -105,12 +105,12 @@ public class Database {
             
             for (Item item : itemList.getList()){
                 if (item.isDamageItem()){
-                    String query = "INSERT INTO " + tableName + " VALUES(1, '" + item.getItemName() + "', " + item.getBaseDamageMaxRoll()+ ", " + item.getBaseDamageMinRoll()+ ", NULL, '" + item.getDamageType().toString() + "')";
+                    String query = "INSERT INTO " + tableName + " VALUES(1, '" + item.getItemName() + "', " + item.getBaseDamageMaxRoll()+ ", " + item.getBaseDamageMinRoll()+ ", NULL, '" + item.getDamageType().toString() + "', "+ item.getIsPlayerItem() +")";
                     System.out.println(query);
                     statement.executeUpdate(query);
                 }
                 else{
-                    String query = "INSERT INTO " + tableName + " VALUES(0, '" + item.getItemName() + "', " + item.getBaseBuffMaxRoll()+ ", " + item.getBaseBuffMinRoll()+ ", '" + item.getBuffType().toString() + "', NULL)";
+                    String query = "INSERT INTO " + tableName + " VALUES(0, '" + item.getItemName() + "', " + item.getBaseBuffMaxRoll()+ ", " + item.getBaseBuffMinRoll()+ ", '" + item.getBuffType().toString() + "', NULL, "+ item.getIsPlayerItem() +")";
                     System.out.println(query);
                     statement.executeUpdate(query);
                 }
@@ -138,6 +138,25 @@ public class Database {
             }
             statement.close();
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void getItemList(){
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"ItemList\"";
+            
+            String query = "SELECT ITEMNAME FROM " + tableName + "WHERE PLAYERWEAPON = 1";
+            System.out.println(query);
+            ResultSet set = statement.executeQuery(query);
+            while (set.next()){
+                System.out.println(set.getString(1));
+            }
+            statement.close();
+        } 
         catch (Exception e) {
             e.printStackTrace();
         }

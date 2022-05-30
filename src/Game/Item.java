@@ -22,24 +22,27 @@ public abstract class Item {
     private DamageTypes.DamageType damageType;
     private int damageMaxRoll;
     private int damageMinRoll;
+    private int isPlayerItem;
 
     private boolean damageItem;
     //Creating a defensive item
-    public Item(String itemName, BuffTypes.Buffs buffType, int baseBuffMaxRoll, int baseBuffMinRoll) {
+    public Item(String itemName, BuffTypes.Buffs buffType, int baseBuffMaxRoll, int baseBuffMinRoll, int isPlayerItem) {
         this.itemName = itemName;
         this.buffType = buffType;
         this.buffMaxRoll = baseBuffMaxRoll;
         this.buffMinRoll = baseBuffMinRoll;
         this.damageItem = false;
+        this.isPlayerItem = isPlayerItem;
     }
 
     //Creating a offensive item
-    public Item(String itemName, int baseDamageMaxRoll, int baseDamageMinRoll, DamageTypes.DamageType damageType) {
+    public Item(String itemName, int baseDamageMaxRoll, int baseDamageMinRoll, DamageTypes.DamageType damageType, int isPlayerItem) {
         this.itemName = itemName;
         this.damageMaxRoll = baseDamageMaxRoll;
         this.damageMinRoll = baseDamageMinRoll;
         this.damageType = damageType;
         this.damageItem = true;
+        this.isPlayerItem = isPlayerItem;
     }
 
     public String getItemName() {
@@ -136,5 +139,13 @@ public abstract class Item {
 
     public void setDamageItem(boolean damageItem) {
         this.damageItem = damageItem;
+    }
+
+    public int getIsPlayerItem() {
+        return isPlayerItem;
+    }
+
+    public void setIsPlayerItem(int isPlayerItem) {
+        this.isPlayerItem = isPlayerItem;
     }
 }

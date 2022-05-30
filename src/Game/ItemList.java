@@ -25,35 +25,35 @@ public class ItemList {
     }
     //Adds all items to the list of items
     public void SetupList(){
-        this.itemList.add(new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water));
-        this.itemList.add(new DamageItem("Smite", 6, 3, DamageTypes.DamageType.Holy));
-        this.itemList.add(new DefensiveItem("Healing Touch", BuffTypes.Buffs.Heal, 6, 1));
-        this.itemList.add(new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt));
-        this.itemList.add(new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1));
-        this.itemList.add(new DamageItem("Fireball", 10, 1, DamageTypes.DamageType.Fire));
-        this.itemList.add(new DefensiveItem("Shield Spell", BuffTypes.Buffs.DamageReduction, 6, 1));
-        this.itemList.add(new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning));
-        this.itemList.add(new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt));
+        this.itemList.add(new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0));
+        this.itemList.add(new DamageItem("Smite", 6, 3, DamageTypes.DamageType.Holy, 0));
+        this.itemList.add(new DefensiveItem("Healing Touch", BuffTypes.Buffs.Heal, 6, 1, 0));
+        this.itemList.add(new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt, 0));
+        this.itemList.add(new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1, 0));
+        this.itemList.add(new DamageItem("Fireball", 10, 1, DamageTypes.DamageType.Fire, 0));
+        this.itemList.add(new DefensiveItem("Shield Spell", BuffTypes.Buffs.DamageReduction, 6, 1, 0));
+        this.itemList.add(new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning, 0));
+        this.itemList.add(new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt, 0));
         
-        this.itemList.add(new DamageItem("Howl", 4, 1, DamageTypes.DamageType.Sound));
-        this.itemList.add(new DefensiveItem("Regenerate", BuffTypes.Buffs.Heal, 10, 1));
-        this.itemList.add(new DefensiveItem("Growl", BuffTypes.Buffs.DamageBuff, 10, 1));
-        this.itemList.add(new DefensiveItem("Kobold Regeneration", BuffTypes.Buffs.Heal, 10, 0));
-        this.itemList.add(new DefensiveItem("Rally", BuffTypes.Buffs.DamageReduction, 10, 1));
-        this.itemList.add(new DefensiveItem("Focus", BuffTypes.Buffs.DamageBuff, 4, 1));
-        this.itemList.add(new DamageItem("Slam", 10, 1, DamageTypes.DamageType.Blunt));
-        this.itemList.add(new DamageItem("Slime Toss", 6, 2, DamageTypes.DamageType.Holy));
-        this.itemList.add(new DefensiveItem("Absorb", BuffTypes.Buffs.Heal, 6, 3));
-        this.itemList.add(new DefensiveItem("Regenerate", BuffTypes.Buffs.Heal, 10, 0));
-        this.itemList.add(new DamageItem("Fire Breath", 12, 1, DamageTypes.DamageType.Fire));
+        this.itemList.add(new DamageItem("Howl", 4, 1, DamageTypes.DamageType.Sound, 0));
+        this.itemList.add(new DefensiveItem("Regenerate", BuffTypes.Buffs.Heal, 10, 1, 0));
+        this.itemList.add(new DefensiveItem("Growl", BuffTypes.Buffs.DamageBuff, 10, 1, 0));
+        this.itemList.add(new DefensiveItem("Kobold Regeneration", BuffTypes.Buffs.Heal, 10, 0, 0));
+        this.itemList.add(new DefensiveItem("Rally", BuffTypes.Buffs.DamageReduction, 10, 1, 0));
+        this.itemList.add(new DefensiveItem("Focus", BuffTypes.Buffs.DamageBuff, 4, 1, 0));
+        this.itemList.add(new DamageItem("Slam", 10, 1, DamageTypes.DamageType.Blunt, 0));
+        this.itemList.add(new DamageItem("Slime Toss", 6, 2, DamageTypes.DamageType.Holy, 0));
+        this.itemList.add(new DefensiveItem("Absorb", BuffTypes.Buffs.Heal, 6, 3, 0));
+        this.itemList.add(new DefensiveItem("Regenerate", BuffTypes.Buffs.Heal, 10, 0, 0));
+        this.itemList.add(new DamageItem("Fire Breath", 12, 1, DamageTypes.DamageType.Fire, 0));
                 
-        this.itemList.add(new DefensiveItem("Shield", BuffTypes.Buffs.DamageReduction, 10, 1));
-        this.itemList.add(new DefensiveItem("Healing Potion", BuffTypes.Buffs.Heal, 6, 1));
-        this.itemList.add(new DefensiveItem("Strength Potion", BuffTypes.Buffs.DamageBuff, 6, 1));
-        this.itemList.add(new DamageItem("Sword", 8, 1, DamageTypes.DamageType.Slash));
-        this.itemList.add(new DamageItem("Spear", 10, 1, DamageTypes.DamageType.Poke));
-        this.itemList.add(new DamageItem("Claws", 4, 1, DamageTypes.DamageType.Slash));
-        this.itemList.add(new DamageItem("Fire Sword", 8, 1, DamageTypes.DamageType.Fire));
+        this.itemList.add(new DefensiveItem("Shield", BuffTypes.Buffs.DamageReduction, 10, 1, 1));
+        this.itemList.add(new DefensiveItem("Healing Potion", BuffTypes.Buffs.Heal, 6, 1, 1));
+        this.itemList.add(new DefensiveItem("Strength Potion", BuffTypes.Buffs.DamageBuff, 6, 1, 1));
+        this.itemList.add(new DamageItem("Sword", 8, 1, DamageTypes.DamageType.Slash, 1));
+        this.itemList.add(new DamageItem("Spear", 10, 1, DamageTypes.DamageType.Poke, 1));
+        this.itemList.add(new DamageItem("Claws", 4, 1, DamageTypes.DamageType.Slash, 1));
+        this.itemList.add(new DamageItem("Fire Sword", 8, 1, DamageTypes.DamageType.Fire, 1));
         
     }
     
