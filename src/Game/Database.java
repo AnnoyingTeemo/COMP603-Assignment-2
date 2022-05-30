@@ -34,6 +34,30 @@ public class Database {
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
+            
+            tableName = "EnemySaves";
+
+            if (!checkTableExisting(tableName)) {
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), name VARCHAR(12), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, item1 VARCHAR(12), item2 VARCHAR(12), item3 VARCHAR(12), item4 VARCHAR(12), damageReductionBoost INT, damageBoost INT)";
+                System.out.println(query);
+                statement.executeUpdate(query);
+            }
+            
+            tableName = "EnemyList";
+
+            if (!checkTableExisting(tableName)) {
+                String query = "CREATE TABLE \"" + tableName + "\" (name VARCHAR(12), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, item1 VARCHAR(12), item2 VARCHAR(12), item3 VARCHAR(12), item4 VARCHAR(12))";
+                System.out.println(query);
+                statement.executeUpdate(query);
+            }
+            
+            tableName = "ItemList";
+
+            if (!checkTableExisting(tableName)) {
+                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(12), maxRoll INT, minRoll INT, buffType VARCHAR(12), damageType VARCHAR(12))";
+                System.out.println(query);
+                statement.executeUpdate(query);
+            }
             //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
 
