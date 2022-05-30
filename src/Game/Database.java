@@ -149,11 +149,19 @@ public class Database {
             Statement statement = conn.createStatement();
             String tableName = "RPG.\"ItemList\"";
             
-            String query = "SELECT ITEMNAME FROM " + tableName + "WHERE PLAYERWEAPON = 1";
+            String query = "SELECT * FROM " + tableName + "WHERE PLAYERWEAPON = 1";
             System.out.println(query);
             ResultSet set = statement.executeQuery(query);
             while (set.next()){
-                System.out.println(set.getString(1));
+//                System.out.println(set.getString(1));
+                if (set.getInt(1) == 1){
+                    Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
+                    System.out.println(item.getItemName());
+                }
+                else{
+                    Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
+                    System.out.println(item.getItemName());
+                }
             }
             statement.close();
         } 
