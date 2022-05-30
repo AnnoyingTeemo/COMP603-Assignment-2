@@ -20,11 +20,11 @@ import java.io.PrintWriter;
  */
 public class Monk extends Ally{
     int repeatedUseCount = 0;
-    Item lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water);
+    Item lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
     
     //Creating a new monk
     public Monk(Item leftHand, Item rightHand){
-        super(30, 15, 0, 0, 0, 5, leftHand, rightHand, new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt), new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1), "Monk");
+        super(30, 15, 0, 0, 0, 5, leftHand, rightHand, new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt, 0), new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1, 0), "Monk");
         calculateAbilities();
     }
     
@@ -43,7 +43,7 @@ public class Monk extends Ally{
         else{
             
             if (repeatedUseCount > 0 && lastUsedItem.getItemName() != "Nothing"){
-                lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water);
+                lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
                 this.setPassiveBuff(repeatedUseCount * 2);//need to then reset lastuseditem
             }
             else{
@@ -58,7 +58,7 @@ public class Monk extends Ally{
     @Override
     public void ResetPassive(){
         repeatedUseCount = 0;
-        lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water);
+        lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
     }
     
     //save monk passive infomation

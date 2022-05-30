@@ -23,7 +23,7 @@ public class Paladin extends Ally{
     
     //Creating a new Paladin
     public Paladin(Item leftHand, Item rightHand) {
-        super(100, 0, 35, 2, 0, 10, leftHand, rightHand, new DamageItem("Smite", 6, 3, DamageTypes.DamageType.Holy), new DefensiveItem("Healing Touch", BuffTypes.Buffs.Heal, 6, 1), "Paladin");
+        super(100, 0, 35, 2, 0, 10, leftHand, rightHand, new DamageItem("Smite", 6, 3, DamageTypes.DamageType.Holy, 0), new DefensiveItem("Healing Touch", BuffTypes.Buffs.Heal, 6, 1, 0), "Paladin");
         calculateAbilities();
     }
 

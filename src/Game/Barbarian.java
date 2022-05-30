@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 public class Barbarian extends Ally{
     //Creating a new barbarian
     public Barbarian(Item leftHand, Item rightHand) {
-        super(80, 10, 50, 4, 0, 15, leftHand, rightHand, new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning), new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt), "Paladin");
+        super(80, 10, 50, 4, 0, 15, leftHand, rightHand, new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning, 0), new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt, 0), "Paladin");
         calculateAbilities();
     }
 

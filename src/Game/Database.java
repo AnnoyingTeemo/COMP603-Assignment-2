@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,9 @@ public class Database {
     //jdbc:derby://localhost:1527/Assesment2
     String dbusername = "rpg";  //your DB username
     String dbpassword = "rpg";   //your DB password
+    
+    ArrayList<Item> playerItemList = new ArrayList<Item>();
+    ArrayList<Item> itemList = new ArrayList<Item>();
     
     public void dbsetup() {
         try {
@@ -143,7 +147,7 @@ public class Database {
         }
     }
     
-    public void getItemList(){
+    public void setupItemLists(){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
@@ -153,14 +157,31 @@ public class Database {
             System.out.println(query);
             ResultSet set = statement.executeQuery(query);
             while (set.next()){
-//                System.out.println(set.getString(1));
                 if (set.getInt(1) == 1){
                     Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
                     System.out.println(item.getItemName());
+                    playerItemList.add(item);
                 }
                 else{
                     Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
                     System.out.println(item.getItemName());
+                    playerItemList.add(item);
+                }
+            }
+            
+            query = "SELECT * FROM " + tableName;
+            System.out.println(query);
+            set = statement.executeQuery(query);
+            while (set.next()){
+                if (set.getInt(1) == 1){
+                    Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
+                    System.out.println(item.getItemName());
+                    itemList.add(item);
+                }
+                else{
+                    Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
+                    System.out.println(item.getItemName());
+                    itemList.add(item);
                 }
             }
             statement.close();
@@ -168,5 +189,13 @@ public class Database {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Item> getPlayerItemList() {
+        return playerItemList;
+    }
+
+    public ArrayList<Item> getItemList() {
+        return itemList;
     }
 }

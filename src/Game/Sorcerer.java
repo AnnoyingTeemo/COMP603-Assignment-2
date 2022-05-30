@@ -23,7 +23,7 @@ public class Sorcerer extends Ally{
     
     //creates a new sorcerer
     public Sorcerer(Item leftHand, Item rightHand){
-        super(70, 10, 15, 5, 0, 20, leftHand, rightHand, new DamageItem("Fireball", 10, 1, DamageTypes.DamageType.Fire), new DefensiveItem("Shield Spell", BuffTypes.Buffs.DamageReduction, 6, 1), "Sorcerer");
+        super(70, 10, 15, 5, 0, 20, leftHand, rightHand, new DamageItem("Fireball", 10, 1, DamageTypes.DamageType.Fire, 0), new DefensiveItem("Shield Spell", BuffTypes.Buffs.DamageReduction, 6, 1, 0), "Sorcerer");
         this.calculateAbilities();
     }
     
