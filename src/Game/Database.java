@@ -30,7 +30,7 @@ public class Database {
             String tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24))";
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(12), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(12), weapon2 VARCHAR(12), classDamage VARCHAR(12), classDefensive VARCHAR(12), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
