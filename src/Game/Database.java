@@ -198,4 +198,23 @@ public class Database {
     public ArrayList<Item> getItemList() {
         return itemList;
     }
+    
+    //Returns a random hashset of items to be used in item selection by the player
+    public ArrayList<String> ReturnRandomList(int numberOfItems){
+        ArrayList<String> itemArrayList = new ArrayList<String>();
+        
+        while (itemArrayList.size() < numberOfItems){
+            int max = this.playerItemList.size() -1 ;
+            int min = 0;
+            int range = max - min + 1;
+
+            Item tryItem = this.playerItemList.get((int)(Math.random() * range) + min);
+
+            if (!itemArrayList.contains(tryItem.getItemName())){
+                itemArrayList.add(tryItem.getItemName());
+            }
+        }
+        
+        return itemArrayList;
+    }
 }

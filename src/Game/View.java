@@ -30,6 +30,7 @@ public class View extends JFrame{
 
     private GameLog log;
     private ItemList itemList;
+    private Database db;
     
     private JLayeredPane startScreen = new JLayeredPane();
     private JLabel title = new JLabel("Game Name");
@@ -56,6 +57,7 @@ public class View extends JFrame{
     public ArrayList<JButton> weaponButtonList = new ArrayList<JButton>();
     
     public View() {
+        db = new Database();
         this.log = new GameLog();
         this.log.LogCount();
         this.itemList = new ItemList();
@@ -141,7 +143,9 @@ public class View extends JFrame{
         this.weapon5.setLocation(225, 300);
         this.weapon6.setLocation(425, 300);
         
-        ArrayList<String> randomItems = itemList.ReturnRandomList(6);
+        
+        db.setupItemLists();
+        ArrayList<String> randomItems = db.ReturnRandomList(6);
         
         for (int i = 0; i < weaponButtonList.size(); i++){
             weaponButtonList.get(i).setText(randomItems.get(i));
