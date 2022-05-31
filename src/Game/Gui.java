@@ -13,7 +13,7 @@ package Game;
 public class Gui {
     public static void main(String[] args) {
         Model model = new Model();
-        View view = new View(model.getDb());
+        View view = new View(model);
         Controller controller = new Controller(view, model.getGame(), model.getDb()                                                                                                                          );
     }
 }

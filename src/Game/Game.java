@@ -28,4 +28,14 @@ public class Game {
         this.enemy = enemy;
         return enemy;
     }
+
+    public Ally getPlayer() {
+        return player;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+    
+    
 }

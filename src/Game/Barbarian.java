@@ -21,13 +21,13 @@ import java.io.PrintWriter;
 public class Barbarian extends Ally{
     //Creating a new barbarian
     public Barbarian(Item leftHand, Item rightHand) {
-        super(80, 10, 50, 4, 0, 15, leftHand, rightHand, new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning, 0), new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt, 0), "Paladin");
+        super(80, 10, 50, 4, 0, 15, leftHand, rightHand, new DamageItem("Rage", 8, 6, DamageTypes.DamageType.Lightning, 0), new DamageItem("Reckless Attack", 12, 1, DamageTypes.DamageType.Blunt, 0), "Barbarian");
         calculateAbilities();
     }
 
     //Creating a new barbarian from a save
     public Barbarian(int baseHealth, int baseDodge, int baseDamageReduction, int baseDamageModifier, int baseSpeed, int baseCritChance, int health, int dodge, int damageReduction, int damageModifier, int speed, int critChance, int currentHealth, Item leftHand, Item rightHand, Item classDamage, Item classDefensive, int level, int damageReductionBoost, int damageBoost, int passiveBuff) {
-        super(baseHealth, baseDodge, baseDamageReduction, baseDamageModifier, baseSpeed, baseCritChance, health, dodge, damageReduction, damageModifier, speed, critChance, currentHealth, leftHand, rightHand, classDamage, classDefensive, level, damageReductionBoost, damageBoost, passiveBuff, "Paladin");
+        super(baseHealth, baseDodge, baseDamageReduction, baseDamageModifier, baseSpeed, baseCritChance, health, dodge, damageReduction, damageModifier, speed, critChance, currentHealth, leftHand, rightHand, classDamage, classDefensive, level, damageReductionBoost, damageBoost, passiveBuff, "Barbarian");
     }
     
     
