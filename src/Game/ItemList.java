@@ -68,15 +68,6 @@ public class ItemList {
         return tempString;
     }
     
-    public Item GetItemByName(String name){
-        for(Item item : this.itemList){
-            if (item.getItemName().equals(name)){
-                return item;
-            }
-        }
-        
-        return this.itemList.get(0);
-    }
     //Returns a random hashset of items to be used in item selection by the player
     public ArrayList<String> ReturnRandomList(int numberOfItems){
         ArrayList<String> itemArrayList = new ArrayList<String>();

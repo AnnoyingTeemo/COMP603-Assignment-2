@@ -10,11 +10,23 @@ package Game;
  * @author Owner
  */
 public class Model {
-    public Database db;
+    private Database db;
+    Game game;
     
     public Model() {
+        game = new Game();
         this.db = new Database();
         this.db.dbsetup();
         this.db.setupItemLists();
+        this.db.SetupEnemyList();
+        game.PickEnemy(db.getEnemyList());
+    }
+
+    public Database getDb() {
+        return db;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

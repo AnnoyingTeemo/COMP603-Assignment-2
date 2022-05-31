@@ -56,8 +56,16 @@ public class View extends JFrame{
     public JButton weapon6 = new JButton("BUTTON 6");
     public ArrayList<JButton> weaponButtonList = new ArrayList<JButton>();
     
-    public View() {
-        db = new Database();
+    private JLayeredPane gamePane = new JLayeredPane();
+    private JLabel enemyName = new JLabel("Enemy Name");
+    private JLabel playerName = new JLabel("Player Name");
+    private JLabel enemyHealth = new JLabel("Enemy Health");
+    private JLabel enemyCurrentHealth = new JLabel("Enemy Current Health");
+    private JLabel playerHealth = new JLabel("Player Health");
+    private JLabel playerCurrentHealth = new JLabel("Player Current Health");
+    
+    public View(Database db) {
+        this.db = db;
         this.log = new GameLog();
         this.log.LogCount();
         this.itemList = new ItemList();
@@ -163,6 +171,12 @@ public class View extends JFrame{
     public void UnloadWeaponSelect(){
         log.Log("Weapon Select unloaded");
         this.weaponsSelect.setVisible(false);
+    }
+    
+    public void LoadGame(){
+        log.Log("Game Loaded");
+        
+        
     }
     
     public void addActionListener(ActionListener listener){

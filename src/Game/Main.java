@@ -375,15 +375,7 @@ public class Main {
     }
     
     //picks a random enemy
-    public static int RandomEnemy(int enemyListLength){
-        int max = enemyListLength -1;
-        int min = 0;
-        int range = max - min + 1;
 
-        int enemy = (int)(Math.random() * range) + min;
-        
-        return enemy;
-    }
     
     //takes a hashset of items and offers them to the player, the player can pick 2 items to use
     public static Item pickItem(HashSet<String> randomItemList){

@@ -27,11 +27,34 @@ public class Database {
     ArrayList<Item> playerItemList = new ArrayList<Item>();
     ArrayList<Item> itemList = new ArrayList<Item>();
     
-    public void dbsetup() {
+    ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    
+    public void dbsetup(){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
-            String tableName = "PlayerSaves";
+            
+            String tableName = "ItemList";
+
+            if (!checkTableExisting(tableName)) {
+                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24), playerWeapon INT)";
+                System.out.println(query);
+                statement.executeUpdate(query);
+                
+                fillItemDatabase();
+            }
+            
+            tableName = "EnemyList";
+
+            if (!checkTableExisting(tableName)) {
+                String query = "CREATE TABLE \"" + tableName + "\" (name VARCHAR(24), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, item1 VARCHAR(24), item2 VARCHAR(24), item3 VARCHAR(24), item4 VARCHAR(24))";
+                System.out.println(query);
+                statement.executeUpdate(query);
+                
+                fillEnemyDatabase();
+            }
+            
+            tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
                 String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(24), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(24), weapon2 VARCHAR(24), classDamage VARCHAR(24), classDefensive VARCHAR(24), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT)";
@@ -45,26 +68,6 @@ public class Database {
                 String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), name VARCHAR(24), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, item1 VARCHAR(24), item2 VARCHAR(24), item3 VARCHAR(24), item4 VARCHAR(24), damageReductionBoost INT, damageBoost INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
-            }
-            
-            tableName = "EnemyList";
-
-            if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (name VARCHAR(24), health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, item1 VARCHAR(24), item2 VARCHAR(24), item3 VARCHAR(24), item4 VARCHAR(24))";
-                System.out.println(query);
-                statement.executeUpdate(query);
-                
-                fillEnemyDatabase();
-            }
-            
-            tableName = "ItemList";
-
-            if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24), playerWeapon INT)";
-                System.out.println(query);
-                statement.executeUpdate(query);
-                
-                fillItemDatabase();
             }
             //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
@@ -135,7 +138,7 @@ public class Database {
             Statement statement = conn.createStatement();
             String tableName = "RPG.\"EnemyList\"";
             
-            for (Enemy enemy : enemyList.getList()){
+            for (Enemy enemy : enemyList.LoadEnemies(this)){
                 String query = "INSERT INTO " + tableName + " VALUES('" + enemy.getName()+ "', " + enemy.getHealth()+ ", " + enemy.getDodge()+ ", " + enemy.getDamageReduction()+ ", " + enemy.getDamageModifier()+ ", " + enemy.getSpeed()+ ", " + enemy.getCritChance()+ ", '" + enemy.getItem1().getItemName()+ "', '" + enemy.getItem2().getItemName()+ "', '" + enemy.getItem3().getItemName()+ "', '" + enemy.getItem4().getItemName()+ "')";
                 System.out.println(query);
                 statement.executeUpdate(query);
@@ -217,4 +220,40 @@ public class Database {
         
         return itemArrayList;
     }
+    
+    public void SetupEnemyList(){
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"EnemyList\"";
+            
+            String query = "SELECT * FROM " + tableName;
+            System.out.println(query);
+            ResultSet set = statement.executeQuery(query);
+            while (set.next()){
+                Enemy enemy = new Enemy(set.getString(1), set.getInt(2), set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), GetItemByName(set.getString(8)), GetItemByName(set.getString(9)), GetItemByName(set.getString(10)), GetItemByName(set.getString(11)));
+                System.out.println(enemy.getName());
+                enemyList.add(enemy);
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Item GetItemByName(String name){
+        for(Item item : this.itemList){
+            if (item.getItemName().equals(name)){
+                return item;
+            }
+        }
+        
+        return this.itemList.get(0);
+    }
+
+    public ArrayList<Enemy> getEnemyList() {
+        return enemyList;
+    }
+    
+    
 }

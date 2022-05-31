@@ -16,6 +16,7 @@ import javax.swing.JButton;
 public class Controller implements ActionListener{
     public View view;
     public Game game;
+    private Database db;
     public ItemList itemList;
 
     private Item item1;
@@ -23,11 +24,12 @@ public class Controller implements ActionListener{
     
     private String playerClass = "";
     
-    public Controller(View view, Game game) {
+    public Controller(View view, Game game, Database db) {
         this.view = view;
         this.game = game;
         this.view.addActionListener(this);
         this.itemList = new ItemList();
+        this.db = db;
     }
     
     
@@ -63,13 +65,14 @@ public class Controller implements ActionListener{
         for (JButton button: view.weaponButtonList){
             if (command.equals(button.getText())){
                 if (item1 == null){
-                    item1 = itemList.GetItemByName(button.getText());
+                    item1 = db.GetItemByName(button.getText());
                     button.setVisible(false);
                 }
                 else{
-                    item2 = itemList.GetItemByName(button.getText());
+                    item2 = db.GetItemByName(button.getText());
                     game.SetPlayerClass(selectClass());
                     view.UnloadWeaponSelect();
+                    view.LoadGame();
                 }
             }
         }
