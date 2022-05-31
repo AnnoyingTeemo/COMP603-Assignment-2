@@ -65,6 +65,7 @@ public class Controller implements ActionListener{
         for (JButton button: view.itemButtonList){
             if (command.equals(button.getText()) && view.gameLoaded){
                 ApplyMove(db.GetItemByName(command), game.player, game.enemy, true);
+                ApplyMove(game.enemy.PickMove(), game.player, game.enemy, false);
                 view.RefreshGame();
             }
         }
