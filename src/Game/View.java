@@ -252,6 +252,7 @@ public class View extends JFrame{
     }
     
     public void RefreshGame(){
+        this.enemyName.setText(game.getEnemy().getName());
         int enemyCurrentHealthText = game.getEnemy().getCurrentHealth();
         int enemyHealthText = game.getEnemy().getHealth();
         this.enemyHealth.setText(String.valueOf(enemyCurrentHealthText) + "/" + String.valueOf(enemyHealthText));

@@ -25,7 +25,7 @@ public class Game {
 
         int enemyNum = (int)(Math.random() * range) + min;
         Enemy enemy = enemyList.get(enemyNum);
-        this.enemy = enemy;
+        this.enemy = new Enemy(enemy);
         return enemy;
     }
 
