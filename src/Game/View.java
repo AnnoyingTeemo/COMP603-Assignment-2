@@ -68,6 +68,11 @@ public class View extends JFrame{
     private JButton Item3 = new JButton("Item 3");
     private JButton Item4 = new JButton("Item 4");
     public ArrayList<JButton> itemButtonList = new ArrayList<JButton>();
+    private JLabel outputText = new JLabel();
+    private String text = "";
+    
+    private JLabel gameOverText = new JLabel("");
+    private JLayeredPane gameOverPane = new JLayeredPane();
     
     public boolean gameLoaded = false;
     
@@ -234,11 +239,18 @@ public class View extends JFrame{
         this.Item3.setText(game.getPlayer().getLeftHand().getItemName());
         this.Item4.setText(game.getPlayer().getRightHand().getItemName());
         
+        text = "You face a " + game.getEnemy().getName() + ":";
+        this.outputText.setSize(400, 400);
+        this.outputText.setLocation(200, 0);
+        this.outputText.setFont(outputText.getFont().deriveFont(20f));
+        this.outputText.setText(text);
+        
         this.gamePane.add(enemyName);
         this.gamePane.add(enemyHealth);
         
         this.gamePane.add(playerName);
         this.gamePane.add(playerHealth);
+        this.gamePane.add(outputText);
         
         this.add(gamePane);
         this.gamePane.setVisible(true);
@@ -260,7 +272,9 @@ public class View extends JFrame{
         int playerCurrentHealthText = game.getPlayer().getCurrentHealth();
         int playerHealthText = game.getPlayer().getHealth();
         this.playerHealth.setText(String.valueOf(playerCurrentHealthText) + "/" + String.valueOf(playerHealthText));
- 
+        
+        this.outputText.setText(text);
+        
         this.gamePane.setVisible(true);
     }
     
@@ -279,10 +293,21 @@ public class View extends JFrame{
         }
     }
     
+    public void GameOverScreen(){
+        gameOverText.setSize(500, 200);
+        gameOverText.setLocation(150, 100);
+        gameOverText.setText("Game Over: " + game.getRoomsPassed() + " Monsters Defeated");
+        this.gameOverText.setFont(gameOverText.getFont().deriveFont(20f));
+        gameOverPane.add(gameOverText);
+        this.add(gameOverPane);
+        this.gameOverPane.setVisible(true);
+    }
+
+    public void addOutputText(String text){
+        this.text += text + "<br>";
+    }
     
-    
-//    @Override
-//    public void update(Observable o, Object arg){
-//        
-//    }
+    public void ResetOutputText(){
+        this.text = "<html>";
+    }
 }

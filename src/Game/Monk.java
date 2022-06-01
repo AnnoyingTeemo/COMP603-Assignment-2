@@ -24,7 +24,7 @@ public class Monk extends Ally{
     
     //Creating a new monk
     public Monk(Item leftHand, Item rightHand){
-        super(30, 15, 0, 0, 0, 5, leftHand, rightHand, new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt, 0), new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1, 0), "Monk");
+        super(40, 15, 0, 0, 0, 5, leftHand, rightHand, new DamageItem("Punch", 4, 3, DamageTypes.DamageType.Blunt, 0), new DefensiveItem("Prepare Body", BuffTypes.Buffs.DamageReduction, 6, 1, 0), "Monk");
         calculateAbilities();
     }
     

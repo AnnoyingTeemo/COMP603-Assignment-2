@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Game {
     public Ally player;
     public Enemy enemy;
+        
+    private int roomsPassed = 0;
     
     public void SetPlayerClass(Ally ally){
         this.player = ally;
@@ -36,6 +38,12 @@ public class Game {
     public Enemy getEnemy() {
         return enemy;
     }
+
+    public int getRoomsPassed() {
+        return roomsPassed;
+    }
     
-    
+    public void RoomsPassedIncrease(){
+        roomsPassed++;
+    }
 }

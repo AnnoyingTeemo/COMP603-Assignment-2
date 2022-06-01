@@ -64,14 +64,23 @@ public class Controller implements ActionListener{
         
         for (JButton button: view.itemButtonList){
             if (command.equals(button.getText()) && view.gameLoaded){
+                view.ResetOutputText();
                 ApplyMove(db.GetItemByName(command), game.player, game.enemy, true);
                 if (game.enemy.Alive()){
                     ApplyMove(game.enemy.PickMove(), game.player, game.enemy, false);
                 }
                 else{
+                    game.RoomsPassedIncrease();
                     game.PickEnemy(db.getEnemyList());
+                    view.addOutputText("You face a " + game.getEnemy().getName() + ":");
                 }
-                view.RefreshGame();
+                if (game.player.Alive()){
+                    view.RefreshGame();
+                }
+                else{
+                    view.UnloadGame();
+                    view.GameOverScreen();
+                }
             }
         }
         
@@ -79,7 +88,7 @@ public class Controller implements ActionListener{
             if (command.equals(button.getText()) && !view.gameLoaded){
                 if (item1 == null){
                     item1 = db.GetItemByName(button.getText());
-                    button.setVisible(false);
+                    button.setEnabled(false);
                 }
                 else{
                     item2 = db.GetItemByName(button.getText());
@@ -110,12 +119,15 @@ public class Controller implements ActionListener{
     }
     
     //once a move has been picked this will appply its effects, e.g. attempting damage or buffing self
-    public static void ApplyMove(Item move, Ally player, Enemy enemy, Boolean playerTurn) {
-        DisplayMoves displayMoves = new DisplayMoves(player);
+    public void ApplyMove(Item move, Ally player, Enemy enemy, Boolean playerTurn) {
+        String output = "";
         
         //Player
         if (playerTurn){
             player.Passive(move);
+            
+            output = player.getClassString() + " used: " + move.getItemName() + "\n";
+            view.addOutputText(output);
             
             if (move.isDamageItem()){
                 int hitChance = (int)(Math.random() * 100) + 1;
@@ -132,22 +144,27 @@ public class Controller implements ActionListener{
                     if (critChance > player.getCritChance()){
                         damage = damage - (damage * enemy.getDamageReduction()/100);
                         enemy.TakeDamage(damage);
-//                        GameLog.Log(displayMoves.DisplayScreen(player, enemy));
                     }
                     else{
                         damage = damage * 2;
                         enemy.TakeDamage(damage);
-//                        GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                        GameLog.Log("Critted"); 
+                        output = "Critted\n";
+                        view.addOutputText(output);
+                        GameLog.Log("Critted"); 
                     }
+                    output = "Dealt " + damage + " damage";
+                    view.addOutputText(output);
                     GameLog.Log("Dealt " + damage + " damage");
                 }
                 else{
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log("Attack Missed");
+                    output = "Attack Missed";
+                    view.addOutputText(output);
+                    GameLog.Log("Attack Missed");
                 }
             }
             else{
+                
+                
                 int max = move.getBaseBuffMaxRoll();
                 int min = move.getBaseBuffMinRoll();
                 int range = max - min + 1;
@@ -158,24 +175,29 @@ public class Controller implements ActionListener{
                 }
                 if (move.getBuffType() == BuffTypes.Buffs.DamageBuff){
                     player.BuffDamage(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log("Damage Buffed by: +" + buff);
+                    output = "Damage Buffed by: +" + buff;
+                    view.addOutputText(output);
+                    GameLog.Log("Damage Buffed by: +" + buff);
                 }
                 else if (move.getBuffType() == BuffTypes.Buffs.DamageReduction){
                     player.BuffDefense(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log("Damage Reduction Buffed by: +" + buff);
+                    output = "Damage Reduction Buffed by: +" + buff;
+                    view.addOutputText(output);
+                    GameLog.Log("Damage Reduction Buffed by: +" + buff);
                 }
                 else{
                     player.Heal(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log("Healed: " + buff);
+                    output = "Healed: " + buff;
+                    view.addOutputText(output);
+                    GameLog.Log("Healed: " + buff);
                 }   
             }
-//            GameLog.Log("\nType anything to continue");
         }
         //Enemy
         else{
+            output = enemy.getName()+ " used: " + move.getItemName() + "\n";
+            view.addOutputText(output);
+            
             if (move.isDamageItem()){
                 int hitChance = (int)(Math.random() * 100) + 1;
                 if (hitChance > player.getDodge()){
@@ -189,20 +211,22 @@ public class Controller implements ActionListener{
                     if (critChance > enemy.getCritChance()){
                         damage = damage - (damage * player.getDamageReduction()/100);
                         player.TakeDamage(damage);
-//                        GameLog.Log(displayMoves.DisplayScreen(player, enemy));
                     }
                     else{
                         player.TakeDamage(damage);
-//                        GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                        GameLog.Log("Critted");
+                        output = "Critted";
+                        view.addOutputText(output);
+                        GameLog.Log("Critted");
                         damage = damage * 2;
                     }
-
-//                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Dealt " + damage + " damage");
+                    output = "Dealt " + damage + " damage";
+                    view.addOutputText(output);    
+                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Dealt " + damage + " damage");
                 }
                 else{
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Attack Missed");
+                    output = "Attack Missed";
+                    view.addOutputText(output);
+                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Attack Missed");
                 }
 
             }
@@ -215,24 +239,25 @@ public class Controller implements ActionListener{
 
                 if (move.getBuffType() == BuffTypes.Buffs.DamageBuff){
                     enemy.BuffDamage(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Damage Buffed by: +" + buff);
+                    output = "Damage Buffed by: +" + buff;
+                    view.addOutputText(output);
+                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Damage Buffed by: +" + buff);
                     
                 }
                 else if (move.getBuffType() == BuffTypes.Buffs.DamageReduction){
                     enemy.BuffDefense(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Damage Reduction Buffed by: +" + buff);
+                    output = "Damage Reduction Buffed by: +" + buff;
+                    view.addOutputText(output);
+                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Damage Reduction Buffed by: +" + buff);
                     
                 }
                 else{
                     enemy.Heal(buff);
-//                    GameLog.Log(displayMoves.DisplayScreen(player, enemy));
-//                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Healed: " + buff);
-                    enemy.Heal(buff);
+                    output = "Healed: " + buff;
+                    view.addOutputText(output);
+                    GameLog.Log(enemy.getName() + " used: " + move.getItemName() + " Healed: " + buff);
                 }
             }
-//            GameLog.Log("\nType anything to continue");
         }
     }
 }
