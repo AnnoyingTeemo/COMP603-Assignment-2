@@ -35,7 +35,7 @@ public class View extends JFrame{
     private Game game;
     
     private JLayeredPane startScreen = new JLayeredPane();
-    private JLabel title = new JLabel("Game Name");
+    private JLabel title = new JLabel("FUNNY GAME NAME THE GAME");
     
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
@@ -89,25 +89,27 @@ public class View extends JFrame{
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        Font font = new Font("Comic Sans", Font.BOLD, 15);
+        Font font = new Font("Comic Sans", Font.BOLD, 20);
         this.title.setFont(font);
-        this.title.setSize(150, 150);
-        this.title.setLocation(235, 0);
+        this.title.setSize(350, 150);
+        this.title.setLocation(150, 0);
         
         this.startButton.setSize(100,30);
         this.startButton.setText("Start Game");
-        this.startButton.setLocation(235, 150);
+        this.startButton.setLocation(160, 150);
+        
+        this.loadSaveButton.setSize(100, 30);
+        this.loadSaveButton.setText("Load Save");
+        this.loadSaveButton.setLocation(310, 150);
         
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
         this.backgroundImage.setSize(600, 600);
         
         this.startScreen.add(title);
         this.startScreen.add(startButton);
+        this.startScreen.add(loadSaveButton);
         this.startScreen.add(backgroundImage);
-        
-//        this.startScreen.setComponentZOrder(title, 1);
-//        this.startScreen.setComponentZOrder(backgroundImage, 0);
-        
+
         this.add(startScreen);
         this.setVisible(true);
         
@@ -126,7 +128,6 @@ public class View extends JFrame{
     
     public void UnloadStartMenu(){
         log.Log("Start Menu unloaded");
-//        this.getContentPane().removeAll();
         this.startScreen.setVisible(false);
     }
     
@@ -153,7 +154,6 @@ public class View extends JFrame{
     
     public void UnloadClassSelect(){
         log.Log("Character Select Unloaded");
-//        getContentPane().removeAll();
         this.classSelect.setVisible(false);
     }
     
@@ -193,7 +193,6 @@ public class View extends JFrame{
     
     public void UnloadWeaponSelect(){
         log.Log("Weapon Select unloaded");
-//        getContentPane().removeAll();
         this.weaponsSelect.setVisible(false);
     }
     
@@ -259,7 +258,6 @@ public class View extends JFrame{
     public void UnloadGame(){
         log.Log("Game Unloaded");
         gameLoaded = false;
-//        getContentPane().removeAll();
         this.gamePane.setVisible(false);
     }
     
