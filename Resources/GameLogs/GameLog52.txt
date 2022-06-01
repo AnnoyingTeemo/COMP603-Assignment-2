@@ -1,0 +1,23 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Dealt 4 damage
+Kobold used: Kobold Regeneration Healed: 3
+Attack Missed
+Kobold used: Rally Damage Reduction Buffed by: +9
+Dealt 6 damage
+Kobold used: Spear Dealt 12 damage
+Attack Missed
+Kobold used: Spear Dealt 10 damage
+Dealt 7 damage
+Kobold used: Focus Damage Buffed by: +3
+Attack Missed
+Kobold used: Spear Dealt 11 damage
+Dealt 9 damage
+Damage Reduction Buffed by: +14
+Critted
+Zombie used: Slam Dealt 18 damage
+Game Unloaded

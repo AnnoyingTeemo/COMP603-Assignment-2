@@ -1,0 +1,82 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Dealt 6 damage
+Dragon used: Claws Dealt 4 damage
+Dealt 11 damage
+Dragon used: Claws Dealt 3 damage
+Dealt 9 damage
+Critted
+Dragon used: Claws Dealt 12 damage
+Dealt 10 damage
+Dragon used: Fire Breath Dealt 6 damage
+Dealt 10 damage
+Dragon used: Claws Attack Missed
+Attack Missed
+Dragon used: Claws Dealt 3 damage
+Dealt 11 damage
+Critted
+Dealt 40 damage
+Dragon used: Claws Dealt 4 damage
+Critted
+Dealt 42 damage
+Dealt 16 damage
+Kobold used: Rally Damage Reduction Buffed by: +10
+Critted
+Dealt 52 damage
+Dealt 9 damage
+Ooze used: Regenerate Healed: 9
+Dealt 13 damage
+Ooze used: Regenerate Healed: 7
+Dealt 10 damage
+Ooze used: Absorb Healed: 4
+Critted
+Dealt 46 damage
+Dealt 8 damage
+Dragon used: Claws Dealt 4 damage
+Dealt 11 damage
+Dragon used: Claws Dealt 3 damage
+Dealt 12 damage
+Dragon used: Claws Dealt 3 damage
+Dealt 13 damage
+Dragon used: Fire Breath Attack Missed
+Dealt 8 damage
+Dealt 14 damage
+Zombie used: Claws Dealt 3 damage
+Dealt 18 damage
+Dealt 13 damage
+Ooze used: Absorb Healed: 6
+Dealt 11 damage
+Ooze used: Absorb Healed: 6
+Dealt 13 damage
+Ooze used: Slam Dealt 6 damage
+Dealt 8 damage
+Dealt 17 damage
+Kobold used: Kobold Regeneration Healed: 8
+Dealt 16 damage
+Dealt 18 damage
+Kobold used: Rally Damage Reduction Buffed by: +2
+Dealt 17 damage
+Dealt 23 damage
+Dealt 13 damage
+Dragon used: Claws Dealt 4 damage
+Dealt 10 damage
+Dragon used: Claws Dealt 3 damage
+Dealt 10 damage
+Dragon used: Claws Attack Missed
+Dealt 11 damage
+Dragon used: Claws Dealt 3 damage
+Dealt 10 damage
+Critted
+Dealt 30 damage
+Dealt 18 damage
+Zombie used: Regenerate Healed: 4
+Dealt 12 damage
+Zombie used: Slam Dealt 6 damage
+Dealt 14 damage
+Dealt 18 damage
+Zombie used: Claws Dealt 4 damage
+Dealt 18 damage

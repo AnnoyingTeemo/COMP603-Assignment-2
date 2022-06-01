@@ -1,0 +1,53 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Damage Buffed by: +4
+Zombie used: Slam Attack Missed
+Damage Buffed by: +1
+Zombie used: Slam Dealt 3 damage
+Damage Buffed by: +3
+Zombie used: Claws Dealt 4 damage
+Damage Buffed by: +3
+Zombie used: Howl Dealt 2 damage
+Damage Buffed by: +5
+Zombie used: Claws Dealt 3 damage
+Damage Buffed by: +6
+Zombie used: Howl Dealt 2 damage
+Damage Buffed by: +2
+Zombie used: Claws Dealt 4 damage
+Damage Buffed by: +5
+Critted
+Zombie used: Claws Dealt 12 damage
+Damage Buffed by: +6
+Zombie used: Slam Dealt 4 damage
+Damage Buffed by: +1
+Zombie used: Claws Dealt 3 damage
+Critted
+Dealt 56 damage
+Damage Buffed by: +2
+Wolf used: Growl Damage Buffed by: +7
+Damage Buffed by: +5
+Wolf used: Howl Attack Missed
+Damage Buffed by: +2
+Wolf used: Claws Dealt 6 damage
+Damage Buffed by: +5
+Wolf used: Howl Dealt 7 damage
+Damage Buffed by: +2
+Wolf used: Claws Dealt 6 damage
+Damage Buffed by: +3
+Critted
+Wolf used: Claws Dealt 22 damage
+Damage Buffed by: +2
+Wolf used: Howl Dealt 5 damage
+Damage Buffed by: +1
+Wolf used: Howl Attack Missed
+Damage Buffed by: +5
+Wolf used: Claws Dealt 7 damage
+Damage Buffed by: +3
+Wolf used: Howl Dealt 5 damage
+Damage Buffed by: +5
+Wolf used: Claws Dealt 5 damage
+Game Unloaded
