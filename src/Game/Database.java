@@ -63,7 +63,7 @@ public class Database {
             tableName = "PlayerSaves";
 
             if (!checkTableExisting(tableName)) {
-                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(24), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(24), weapon2 VARCHAR(24), classDamage VARCHAR(24), classDefensive VARCHAR(24), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT)";
+                String query = "CREATE TABLE \"" + tableName + "\" (playerName VARCHAR(24), className VARCHAR(24), baseHealth INT, baseDodge INT, baseDamageReduction INT, baseDamageModifier INT, baseSpeed INT, baseCritChance INT, health INT, dodge INT, damageReduction INT, damageModifier INT, speed INT, critChance INT, currentHealth INT, weapon1 VARCHAR(24), weapon2 VARCHAR(24), classDamage VARCHAR(24), classDefensive VARCHAR(24), level INT, damageReductionBoost INT, damageBoost INT, passiveBuff INT, attackedLastTurn INT, repeatedUseCount INT, lastUsedItem VARCHAR(24), magicSurge INT)";
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
@@ -117,6 +117,7 @@ public class Database {
             String tableName = "RPG.\"ItemList\"";
             
             for (Item item : itemList.getList()){
+                this.itemList.add(item);
                 if (item.isDamageItem()){
                     String query = "INSERT INTO " + tableName + " VALUES(1, '" + item.getItemName() + "', " + item.getBaseDamageMaxRoll()+ ", " + item.getBaseDamageMinRoll()+ ", NULL, '" + item.getDamageType().toString() + "', "+ item.getIsPlayerItem() +")";
                     System.out.println(query);
@@ -157,46 +158,48 @@ public class Database {
     }
     
     public void setupItemLists(){
-        try {
-            conn = DriverManager.getConnection(url, dbusername, dbpassword);
-            Statement statement = conn.createStatement();
-            String tableName = "RPG.\"ItemList\"";
-            
-            String query = "SELECT * FROM " + tableName + "WHERE PLAYERWEAPON = 1";
-            System.out.println(query);
-            ResultSet set = statement.executeQuery(query);
-            while (set.next()){
-                if (set.getInt(1) == 1){
-                    Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
-                    System.out.println(item.getItemName());
-                    playerItemList.add(item);
+        if (itemList.size() == 0){
+            try {
+                conn = DriverManager.getConnection(url, dbusername, dbpassword);
+                Statement statement = conn.createStatement();
+                String tableName = "RPG.\"ItemList\"";
+
+                String query = "SELECT * FROM " + tableName + "WHERE PLAYERWEAPON = 1";
+                System.out.println(query);
+                ResultSet set = statement.executeQuery(query);
+                while (set.next()){
+                    if (set.getInt(1) == 1){
+                        Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
+                        System.out.println(item.getItemName());
+                        playerItemList.add(item);
+                    }
+                    else{
+                        Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
+                        System.out.println(item.getItemName());
+                        playerItemList.add(item);
+                    }
                 }
-                else{
-                    Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
-                    System.out.println(item.getItemName());
-                    playerItemList.add(item);
+
+                query = "SELECT * FROM " + tableName;
+                System.out.println(query);
+                set = statement.executeQuery(query);
+                while (set.next()){
+                    if (set.getInt(1) == 1){
+                        Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
+                        System.out.println(item.getItemName());
+                        itemList.add(item);
+                    }
+                    else{
+                        Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
+                        System.out.println(item.getItemName());
+                        itemList.add(item);
+                    }
                 }
+                statement.close();
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
             }
-            
-            query = "SELECT * FROM " + tableName;
-            System.out.println(query);
-            set = statement.executeQuery(query);
-            while (set.next()){
-                if (set.getInt(1) == 1){
-                    Item item = new DamageItem(set.getString(2), set.getInt(3), set.getInt(4), DamageTypes.DamageType.valueOf(set.getString(6)), set.getInt(7));
-                    System.out.println(item.getItemName());
-                    itemList.add(item);
-                }
-                else{
-                    Item item = new DefensiveItem(set.getString(2), BuffTypes.Buffs.valueOf(set.getString(5)), set.getInt(3), set.getInt(4), set.getInt(7));
-                    System.out.println(item.getItemName());
-                    itemList.add(item);
-                }
-            }
-            statement.close();
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -294,7 +297,30 @@ public class Database {
             Statement statement = conn.createStatement();
             String tableName = "RPG.\"PlayerSaves\"";
             
-            String query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ player.getClassString() +"', "+ player.getBaseHealth() +", "+ player.getBaseDodge() +", "+ player.getBaseDamageReduction() +", "+ player.getBaseDamageModifier() +", "+ player.getBaseSpeed() +", "+ player.getBaseCritChance() +", "+ player.getHealth() +", "+ player.getDodge() +", "+ player.getDamageReduction() +", "+ player.getDamageModifier() +", "+ player.getSpeed() +", "+ player.getCritChance() +", "+ player.getCurrentHealth() +", '"+ player.getLeftHand().getItemName() +"', '"+ player.getRightHand().getItemName()+"', '"+ player.getClassDamage().getItemName() +"', '"+ player.getClassDefensive().getItemName() +"', "+ player.getLevel() +", "+ player.getDamageReductionBoost() +", "+ player.getDamageBoost() +", "+ player.getPassiveBuff() + ")";
+            String query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ player.getClassString() +"', "+ player.getBaseHealth() +", "+ player.getBaseDodge() +", "+ player.getBaseDamageReduction() +", "+ player.getBaseDamageModifier() +", "+ player.getBaseSpeed() +", "+ player.getBaseCritChance() +", "+ player.getHealth() +", "+ player.getDodge() +", "+ player.getDamageReduction() +", "+ player.getDamageModifier() +", "+ player.getSpeed() +", "+ player.getCritChance() +", "+ player.getCurrentHealth() +", '"+ player.getLeftHand().getItemName() +"', '"+ player.getRightHand().getItemName()+"', '"+ player.getClassDamage().getItemName() +"', '"+ player.getClassDefensive().getItemName() +"', "+ player.getLevel() +", "+ player.getDamageReductionBoost() +", "+ player.getDamageBoost() +", "+ player.getPassiveBuff();
+            if (player.getClassString().equals("Barbarian")){
+                query += ", 0, 0, NULL, 0";
+                
+                query += ")";
+            }
+            else if (player.getClassString().equals("Paladin")){
+                int attackedLastTurn = player.getAttackedLastTurn()? 1 : 0;
+                query += ", "+ attackedLastTurn +", 0, NULL, 0";
+                
+                query += ")";
+            }
+            else if (player.getClassString().equals("Sorcerer")){
+                int wildSurge = player.isMagicSurge()? 1 : 0;
+                query += ", 0, 0, NULL, "+ wildSurge +"";
+                
+                query += ")";
+            }
+            else if (player.getClassString().equals("Monk")){
+                query += ", 0, "+ player.getRepeatedUseCount() +", '"+ player.getLastUsedItem().getItemName() +"', 0";
+                
+                query += ")";
+            }
+            
             System.out.println(query);
             statement.executeUpdate(query);
             
@@ -336,7 +362,7 @@ public class Database {
         }
     }
     
-    public void LoadSave(){
+    public void LoadSave(String saveName){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
@@ -348,23 +374,27 @@ public class Database {
             
             set.next();
             
-            if (set.getString(2) == "Paladin"){
+            if (set.getString(2).equalsIgnoreCase("Paladin")){
                 Ally player = new Paladin(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                player.loadPassive(set.getInt(24), set.getInt(25), GetItemByName(set.getString(26)), set.getInt(27));
                 System.out.println(player.getClass());
                 game.player = player;
             }
-            else if (set.getString(2) == "Barbarian"){
+            else if (set.getString(2).equals("Barbarian")){
                 Ally player = new Barbarian(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                player.loadPassive(set.getInt(24), set.getInt(25), GetItemByName(set.getString(26)), set.getInt(27));
                 System.out.println(player.getClass());
                 game.player = player;
             }
-            else if (set.getString(2) == "Monk"){
+            else if (set.getString(2).equalsIgnoreCase("Monk")){
                 Ally player = new Monk(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                player.loadPassive(set.getInt(24), set.getInt(25), GetItemByName(set.getString(26)), set.getInt(27));
                 System.out.println(player.getClass());
                 game.player = player;
             }
-            else if (set.getString(2) == "Sorcerer"){
+            else if (set.getString(2).equals("Sorcerer")){
                 Ally player = new Sorcerer(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                player.loadPassive(set.getInt(24), set.getInt(25), GetItemByName(set.getString(26)), set.getInt(27));
                 System.out.println(player.getClass());
                 game.player = player;
             }
@@ -376,8 +406,7 @@ public class Database {
             query = "SELECT * FROM " + tableName + "WHERE playerName = '"+ saveName +"'";
             System.out.println(query);
             set = statement.executeQuery(query);
-            
-            set.first();
+
             set.next();
             Enemy enemy = new Enemy(set.getString(2), set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), GetItemByName(set.getString(10)), GetItemByName(set.getString(11)), GetItemByName(set.getString(12)), GetItemByName(set.getString(13)), set.getInt(14), set.getInt(15));
             System.out.println(enemy.getName());

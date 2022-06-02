@@ -56,46 +56,40 @@ public class Paladin extends Ally{
         }
     }
     
-    //Save passive attributes
-    @Override
-    public void Save(){
-        String output = "";
-        
-        output += attackedLastTurn;
-        
-        
-        PrintWriter pw = null;
-        
-        try {
-            pw = new PrintWriter(new FileOutputStream("./Resources/ClassSave.txt"));
-            pw.print(output);
-            pw.close();
-        }
-        catch (FileNotFoundException e) {
-                System.out.println(e.getMessage());
-        }
-    }
-    //Load passive attributes
-    @Override
-    public void Load(){
-        try{
-            FileReader fr = new FileReader("./Resources/ClassSave.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            attackedLastTurn = Boolean.valueOf(inputStream.readLine());
-            inputStream.close();
-        }
-        catch(FileNotFoundException e){
-            System.out.println("File not found");
-        }
-        catch(IOException e){
-            System.out.println("Error reading from file");
-        }
-    }
-    
     //reset passive between battles
     @Override
     public void ResetPassive(){
         attackedLastTurn = false;
         this.setPassiveBuff(0);
+    }
+
+    @Override
+    public Boolean getAttackedLastTurn() {
+        return attackedLastTurn;
+    }
+    
+    @Override
+    public int getRepeatedUseCount() {
+        return 0;
+    }
+    
+    @Override
+    public Item getLastUsedItem() {
+        return new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
+    }
+    
+    @Override
+    public boolean isMagicSurge() {
+        return false;
+    }
+    
+    @Override
+    public void loadPassive(int attackedLastTurn, int repeatedUseCount, Item lastUsedItem, int magicSurge){
+        if (attackedLastTurn == 0){
+            this.attackedLastTurn = false;
+        }
+        else{
+            this.attackedLastTurn = true;
+        }
     }
 }

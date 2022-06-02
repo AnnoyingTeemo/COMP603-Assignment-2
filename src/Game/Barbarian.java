@@ -42,31 +42,34 @@ public class Barbarian extends Ally{
         }
     }
     
-    //Save the class spesific infomation
-    @Override
-    public void Save(){
-        String output = "";
-        
-        PrintWriter pw = null;
-        
-        try {
-            pw = new PrintWriter(new FileOutputStream("./Resources/ClassSave.txt"));
-            pw.print(output);
-            pw.close();
-        }
-        catch (FileNotFoundException e) {
-                System.out.println(e.getMessage());
-        }
-    }
-    
-    //Load any class spesific infomation
-    @Override
-    public void Load(){
-    }
-    
     //Reset the passive infomation at the start of each battle
     @Override
     public void ResetPassive(){
         this.setPassiveBuff(0);
+    }
+    
+        @Override
+    public Boolean getAttackedLastTurn() {
+        return false;
+    }
+    
+    @Override
+    public int getRepeatedUseCount() {
+        return 0;
+    }
+    
+    @Override
+    public Item getLastUsedItem() {
+        return new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
+    }
+    
+    @Override
+    public boolean isMagicSurge() {
+        return false;
+    }
+    
+    @Override
+    public void loadPassive(int attackedLastTurn, int repeatedUseCount, Item lastUsedItem, int magicSurge){
+    
     }
 }

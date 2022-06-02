@@ -56,40 +56,33 @@ public class Sorcerer extends Ally{
     public void ResetPassive(){
         magicSurge = true;
     }
-    
-    //save passive info to file
-    @Override
-    public void Save(){
-        String output = "";
-        
-        output += magicSurge;
-        
-        PrintWriter pw = null;
-        
-        try {
-            pw = new PrintWriter(new FileOutputStream("./Resources/ClassSave.txt"));
-            pw.print(output);
-            pw.close();
-        }
-        catch (FileNotFoundException e) {
-                System.out.println(e.getMessage());
-        }
+
+    public boolean isMagicSurge() {
+        return magicSurge;
     }
     
-    //load passive info from file
+        @Override
+    public Boolean getAttackedLastTurn() {
+        return false;
+    }
+    
     @Override
-    public void Load(){
-        try{
-            FileReader fr = new FileReader("./Resources/ClassSave.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            magicSurge = Boolean.valueOf(inputStream.readLine());
-            inputStream.close();
+    public int getRepeatedUseCount() {
+        return 0;
+    }
+    
+    @Override
+    public Item getLastUsedItem() {
+        return new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
+    }
+    
+    @Override
+    public void loadPassive(int attackedLastTurn, int repeatedUseCount, Item lastUsedItem, int magicSurge){
+        if (magicSurge == 0){
+            this.magicSurge = false;
         }
-        catch(FileNotFoundException e){
-            System.out.println("File not found");
-        }
-        catch(IOException e){
-            System.out.println("Error reading from file");
+        else{
+            this.magicSurge = true;
         }
     }
 }

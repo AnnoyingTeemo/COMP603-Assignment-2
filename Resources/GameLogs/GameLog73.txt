@@ -1,0 +1,14 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Damage Reduction Buffed by: +1
+Dragon used: Claws Dealt 6 damage
+Damage Reduction Buffed by: +7
+Dragon used: Claws Attack Missed
+Damage Reduction Buffed by: +8
+Dragon used: Fire Breath Dealt 11 damage
+Damage Reduction Buffed by: +6
+Dragon used: Claws Dealt 8 damage

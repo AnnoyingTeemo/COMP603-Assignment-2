@@ -1,0 +1,4 @@
+Start Menu unloaded
+Game Loaded
+Dealt 6 damage
+Dragon used: Fire Breath Dealt 6 damage

@@ -60,43 +60,28 @@ public class Monk extends Ally{
         repeatedUseCount = 0;
         lastUsedItem = new DamageItem("Nothing", 0, 0, DamageTypes.DamageType.Water, 0);
     }
-    
-    //save monk passive infomation
-    @Override
-    public void Save(){
-        String output = "";
-        
-        output += repeatedUseCount + "\n";
-        output += lastUsedItem.getItemName();
-        
-        
-        PrintWriter pw = null;
-        
-        try {
-            pw = new PrintWriter(new FileOutputStream("./Resources/ClassSave.txt"));
-            pw.print(output);
-            pw.close();
-        }
-        catch (FileNotFoundException e) {
-                System.out.println(e.getMessage());
-        }
+
+    public int getRepeatedUseCount() {
+        return repeatedUseCount;
+    }
+
+    public Item getLastUsedItem() {
+        return lastUsedItem;
     }
     
-    //load monk passive infomation
     @Override
-    public void Load(){
-        try{
-            FileReader fr = new FileReader("./Resources/ClassSave.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            repeatedUseCount = Integer.valueOf(inputStream.readLine());
-            lastUsedItem = new ItemList().GetItemByName(inputStream.readLine());
-            inputStream.close();
-        }
-        catch(FileNotFoundException e){
-            System.out.println("File not found");
-        }
-        catch(IOException e){
-            System.out.println("Error reading from file");
-        }
+    public Boolean getAttackedLastTurn() {
+        return false;
+    }
+    
+    @Override
+    public boolean isMagicSurge() {
+        return false;
+    }
+    
+    @Override
+    public void loadPassive(int attackedLastTurn, int repeatedUseCount, Item lastUsedItem, int magicSurge){
+        this.repeatedUseCount = repeatedUseCount;
+        this.lastUsedItem = lastUsedItem;
     }
 }

@@ -1,0 +1,6 @@
+Start Menu unloaded
+Game Loaded
+Dealt 5 damage
+Dragon used: Fire Breath Attack Missed
+Dealt 2 damage
+Dragon used: Claws Dealt 8 damage

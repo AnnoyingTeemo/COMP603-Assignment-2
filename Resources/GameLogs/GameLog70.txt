@@ -1,0 +1,20 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Damage Reduction Buffed by: +6
+Wolf used: Howl Dealt 5 damage
+Damage Reduction Buffed by: +4
+Wolf used: Howl Dealt 6 damage
+Damage Reduction Buffed by: +7
+Wolf used: Claws Dealt 6 damage
+Damage Reduction Buffed by: +6
+Wolf used: Growl Damage Buffed by: +4
+Damage Reduction Buffed by: +8
+Wolf used: Growl Damage Buffed by: +9
+Damage Reduction Buffed by: +7
+Wolf used: Claws Attack Missed
+Damage Reduction Buffed by: +11
+Wolf used: Howl Dealt 17 damage

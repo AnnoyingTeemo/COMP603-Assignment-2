@@ -116,9 +116,6 @@ public abstract class Ally {
         this.classString = classString;
     }
     
-    public abstract void Save();
-    public abstract void Load();
-    
     public abstract void ResetPassive();
     
     public abstract void Passive(Item item);
@@ -357,4 +354,11 @@ public abstract class Ally {
     public void setLevel(int level) {
         this.level = level;
     }
+    
+    public abstract Boolean getAttackedLastTurn();
+    public abstract int getRepeatedUseCount();
+    public abstract Item getLastUsedItem();
+    public abstract boolean isMagicSurge();
+    
+    public abstract void loadPassive(int attackedLastTurn, int repeatedUseCount, Item lastUsedItem, int magicSurge);
 }
