@@ -44,7 +44,7 @@ public class View extends JFrame{
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
     public JButton loadSaveButton = new JButton("Load Save");
-    public JTextField saveNameInput = new JTextField("Test");
+    public JTextField saveNameInput = new JTextField("Save Name");
     
     //Select class
     private JLayeredPane classSelect = new JLayeredPane();

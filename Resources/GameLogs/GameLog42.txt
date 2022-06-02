@@ -1,9 +1,0 @@
-Start Menu unloaded
-Character select loaded
-Character Select Unloaded
-Weapon Select loaded
-Weapon Select unloaded
-Game Loaded
-Critted
-Dealt 20 damage
-Ooze used: Regenerate Healed: 9
