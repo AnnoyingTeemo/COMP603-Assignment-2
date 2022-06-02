@@ -290,9 +290,9 @@ public class Database {
             Statement statement = conn.createStatement();
             String tableName = "RPG.\"PlayerSaves\"";
             
-            String query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ player.getClassString() +"', "+ player.getBaseHealth() +", "+ player.getBaseDodge() +", "+ player.getBaseDamageReduction() +", "+ player.getBaseDamageModifier() +", "+ player.getBaseSpeed() +", "+ player.getBaseCritChance() +", "+ player.getHealth() +", "+ player.getDodge() +", "+ player.getDamageReduction() +", "+ player.getDamageModifier() +", "+ player.getSpeed() +", "+ player.getCritChance() +", "+ player.getCurrentHealth() +", '"+ player.getLeftHand() +"', '"+ player.getRightHand()+"', '"+ player.getClassDamage() +"', '"+ player.getClassDefensive() +"', "+ player.getLevel() +", "+ player.getDamageReductionBoost() +", "+ player.getDamageBoost() +", "+ player.getPassiveBuff() + ")";
+            String query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ player.getClassString() +"', "+ player.getBaseHealth() +", "+ player.getBaseDodge() +", "+ player.getBaseDamageReduction() +", "+ player.getBaseDamageModifier() +", "+ player.getBaseSpeed() +", "+ player.getBaseCritChance() +", "+ player.getHealth() +", "+ player.getDodge() +", "+ player.getDamageReduction() +", "+ player.getDamageModifier() +", "+ player.getSpeed() +", "+ player.getCritChance() +", "+ player.getCurrentHealth() +", '"+ player.getLeftHand().getItemName() +"', '"+ player.getRightHand().getItemName()+"', '"+ player.getClassDamage().getItemName() +"', '"+ player.getClassDefensive().getItemName() +"', "+ player.getLevel() +", "+ player.getDamageReductionBoost() +", "+ player.getDamageBoost() +", "+ player.getPassiveBuff() + ")";
             System.out.println(query);
-//            statement.executeUpdate(query);
+            statement.executeUpdate(query);
             
             statement.close();
         }

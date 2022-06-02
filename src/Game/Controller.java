@@ -80,6 +80,7 @@ public class Controller implements ActionListener{
                 }
                 else{
                     game.RoomsPassedIncrease();
+                    game.getPlayer().resetAbilities();
                     game.PickEnemy(db.getEnemyList());
                     view.addOutputText("You face a " + game.getEnemy().getName() + ":");
                 }

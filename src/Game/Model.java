@@ -31,8 +31,7 @@ public class Model {
         return game;
     }
     
-    public int saveAndClose(){
+    public void saveAndClose(){
         db.save(game.getPlayer(), game.getEnemy(), db.saveName);
-        return 3;
     }
 }

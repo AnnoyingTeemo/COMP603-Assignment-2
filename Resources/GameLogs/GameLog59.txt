@@ -1,0 +1,16 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Dealt 10 damage
+Wolf used: Growl Damage Buffed by: +9
+Critted
+Dealt 22 damage
+Dealt 6 damage
+Bandit used: Rally Damage Reduction Buffed by: +3
+Dealt 6 damage
+Bandit used: Nothing Attack Missed
+Dealt 5 damage
+Bandit used: Rage Dealt 5 damage

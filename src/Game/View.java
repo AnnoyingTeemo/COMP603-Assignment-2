@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Observable;
@@ -89,6 +92,14 @@ public class View extends JFrame{
         
 //        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt){
+                if (game.getPlayer() != null){
+                    model.saveAndClose();
+                }
+                System.exit(0);
+            }
+        });
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -107,7 +118,7 @@ public class View extends JFrame{
         
         this.saveNameInput.setSize(250, 30);
         this.saveNameInput.setLocation(160, 200);
-        this.saveNameInput.setEnabled(false);
+        this.loadSaveButton.setEnabled(false);
         
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
         this.backgroundImage.setSize(600, 600);
@@ -322,3 +333,5 @@ public class View extends JFrame{
         this.text = "<html>";
     }
 }
+
+
