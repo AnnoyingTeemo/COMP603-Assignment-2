@@ -47,7 +47,7 @@ public class View extends JFrame{
     private JLayeredPane startScreen = new JLayeredPane();
     private JLabel title = new JLabel("FUNNY GAME NAME THE GAME");
     
-    private JLabel backgroundImage = new JLabel();
+//    private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
     public JButton loadSaveButton = new JButton("Load Save");
     public JTextField saveNameInput = new JTextField();
@@ -129,14 +129,14 @@ public class View extends JFrame{
         this.saveNameInput.setDocument(new LimitJTextField(23));
         this.saveNameInput.setText("Save Name, Enter Saves");
         
-        this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
-        this.backgroundImage.setSize(600, 600);
+//        this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/smoke1.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
+//        this.backgroundImage.setSize(600, 600);
         
         this.startScreen.add(title);
         this.startScreen.add(startButton);
         this.startScreen.add(loadSaveButton);
         this.startScreen.add(saveNameInput);
-        this.startScreen.add(backgroundImage);
+//        this.startScreen.add(backgroundImage);
 
         this.add(startScreen);
         this.setVisible(true);
@@ -158,6 +158,7 @@ public class View extends JFrame{
         log.Log("Start Menu unloaded");
         this.startScreen.setVisible(false);
         db.saveName = this.saveNameInput.getText();
+        db.saveName = db.saveName.replaceAll("[^a-zA-Z0-9]", "");
     }
     
     public void LoadClassSelect(){

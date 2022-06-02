@@ -54,6 +54,9 @@ public class ItemList {
         this.itemList.add(new DamageItem("Spear", 10, 1, DamageTypes.DamageType.Poke, 1));
         this.itemList.add(new DamageItem("Claws", 4, 1, DamageTypes.DamageType.Slash, 1));
         this.itemList.add(new DamageItem("Fire Sword", 8, 1, DamageTypes.DamageType.Fire, 1));
+        this.itemList.add(new DamageItem("Mace", 8, 1, DamageTypes.DamageType.Blunt, 1));
+        this.itemList.add(new DamageItem("Hot Potato", 6, 2, DamageTypes.DamageType.Fire, 1));
+        this.itemList.add(new DamageItem("Dagger", 4, 4, DamageTypes.DamageType.Poke, 1));
         
     }
     
