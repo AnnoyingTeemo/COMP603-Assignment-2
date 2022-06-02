@@ -294,6 +294,12 @@ public class Database {
             System.out.println(query);
             statement.executeUpdate(query);
             
+            tableName = "RPG.\"EnemySaves\"";
+            
+            query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ enemy.getName()+"', "+ enemy.getHealth() +", "+ enemy.getDodge() +", "+ enemy.getDamageReduction() +", "+ enemy.getDamageModifier() +", "+ enemy.getSpeed() +", "+ enemy.getCritChance() +", "+ enemy.getCurrentHealth()+", '"+ enemy.getItem1().getItemName() +"', '"+ enemy.getItem2().getItemName()+"', '"+ enemy.getItem3().getItemName() +"', '"+ enemy.getItem4().getItemName() +"', "+ enemy.getDamageReductionBoost() +", "+ enemy.getDamageBoost() +")";
+            System.out.println(query);
+            statement.executeUpdate(query);
+            
             statement.close();
         }
         catch (Exception e) {
@@ -302,6 +308,27 @@ public class Database {
     }
     
     public void deleteSave(String saveName){
-        
+        if (saveNameList.contains(saveName)){
+            try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"PlayerSaves\"";
+            
+            String query = "DELETE FROM " + tableName + " WHERE playerName = '" + saveName + "'";
+            System.out.println(query);
+            statement.executeUpdate(query);
+            
+            tableName = "RPG.\"EnemySaves\"";
+            
+            query = "DELETE FROM " + tableName + " WHERE playerName = '" + saveName + "'";
+            System.out.println(query);
+            statement.executeUpdate(query);
+            
+            statement.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        }
     }
 }

@@ -90,6 +90,7 @@ public class Controller implements ActionListener{
                 else{
                     view.UnloadGame();
                     view.GameOverScreen();
+                    db.deleteSave(db.saveName);
                 }
             }
         }

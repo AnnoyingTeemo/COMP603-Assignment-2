@@ -32,6 +32,7 @@ public class Model {
     }
     
     public void saveAndClose(){
+        db.deleteSave(db.saveName);
         db.save(game.getPlayer(), game.getEnemy(), db.saveName);
     }
 }
