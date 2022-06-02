@@ -5,17 +5,12 @@
         <group>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Game.java</file>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/DisplayMoves.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Barbarian.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/View.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/SaveLoadEnemy.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Controller.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Monk.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Paladin.java</file>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Ally.java</file>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Gui.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/View.java</file>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Model.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Sorcerer.java</file>
             <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Database.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/COMP603-Assignment-2/src/Game/Controller.java</file>
         </group>
     </open-files>
 </project-private>

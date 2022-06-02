@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -29,12 +30,17 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 public class View extends JFrame{
 
     private GameLog log;
     private ItemList itemList;
-    private Database db;
+    public Database db;
     private Model model;
     private Game game;
     
@@ -44,7 +50,7 @@ public class View extends JFrame{
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
     public JButton loadSaveButton = new JButton("Load Save");
-    public JTextField saveNameInput = new JTextField("Save Name");
+    public JTextField saveNameInput = new JTextField();
     
     //Select class
     private JLayeredPane classSelect = new JLayeredPane();
@@ -119,6 +125,9 @@ public class View extends JFrame{
         this.saveNameInput.setSize(250, 30);
         this.saveNameInput.setLocation(160, 200);
         this.loadSaveButton.setEnabled(false);
+        
+        this.saveNameInput.setDocument(new LimitJTextField(23));
+        this.saveNameInput.setText("Save Name, Enter Saves");
         
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
         this.backgroundImage.setSize(600, 600);
@@ -334,4 +343,18 @@ public class View extends JFrame{
     }
 }
 
-
+class LimitJTextField extends PlainDocument 
+{
+    private int max;
+    LimitJTextField(int max) {
+        super();
+        this.max = max;
+   }
+    public void insertString(int offset, String text, AttributeSet attr) throws BadLocationException {
+        if (text == null)
+        return;
+        if ((getLength() + text.length()) <= max) {
+            super.insertString(offset, text, attr);
+      }
+   }
+}
