@@ -50,6 +50,11 @@ public class Controller implements ActionListener{
             view.UnloadStartMenu();
             view.LoadClassSelect();
         }
+        if (command.equals("Load Game")){
+            db.LoadSave();
+            view.UnloadStartMenu();
+            view.LoadGame();
+        }
         if (command.equals("Barbarian")){
             view.UnloadClassSelect();
             view.LoadWeaponSelect();

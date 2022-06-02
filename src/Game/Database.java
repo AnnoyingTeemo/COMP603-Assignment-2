@@ -31,7 +31,11 @@ public class Database {
     ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
     String saveName = "";
     
-    public void dbsetup(){
+    Game game;
+    
+    public void dbsetup(Game game){
+        this.game = game;
+        
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
@@ -329,6 +333,58 @@ public class Database {
         catch (Exception e) {
             e.printStackTrace();
         }
+        }
+    }
+    
+    public void LoadSave(){
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"PlayerSaves\"";
+            
+            String query = "SELECT * FROM " + tableName + "WHERE playerName = '"+ saveName +"'";
+            System.out.println(query);
+            ResultSet set = statement.executeQuery(query);
+            
+            set.next();
+            
+            if (set.getString(2) == "Paladin"){
+                Ally player = new Paladin(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                System.out.println(player.getClass());
+                game.player = player;
+            }
+            else if (set.getString(2) == "Barbarian"){
+                Ally player = new Barbarian(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                System.out.println(player.getClass());
+                game.player = player;
+            }
+            else if (set.getString(2) == "Monk"){
+                Ally player = new Monk(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                System.out.println(player.getClass());
+                game.player = player;
+            }
+            else if (set.getString(2) == "Sorcerer"){
+                Ally player = new Sorcerer(set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), set.getInt(10), set.getInt(11), set.getInt(12), set.getInt(13), set.getInt(14), set.getInt(15), GetItemByName(set.getString(16)), GetItemByName(set.getString(17)), GetItemByName(set.getString(18)), GetItemByName(set.getString(19)), set.getInt(20), set.getInt(21), set.getInt(22), set.getInt(23));
+                System.out.println(player.getClass());
+                game.player = player;
+            }
+            
+            statement.close();
+            statement = conn.createStatement();
+            tableName = "RPG.\"EnemySaves\"";
+            
+            query = "SELECT * FROM " + tableName + "WHERE playerName = '"+ saveName +"'";
+            System.out.println(query);
+            set = statement.executeQuery(query);
+            
+            set.first();
+            set.next();
+            Enemy enemy = new Enemy(set.getString(2), set.getInt(3), set.getInt(4), set.getInt(5), set.getInt(6), set.getInt(7), set.getInt(8), set.getInt(9), GetItemByName(set.getString(10)), GetItemByName(set.getString(11)), GetItemByName(set.getString(12)), GetItemByName(set.getString(13)), set.getInt(14), set.getInt(15));
+            System.out.println(enemy.getName());
+            game.enemy = enemy;
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

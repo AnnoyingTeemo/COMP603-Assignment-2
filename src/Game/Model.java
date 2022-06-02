@@ -16,7 +16,7 @@ public class Model {
     public Model() {
         game = new Game();
         this.db = new Database();
-        this.db.dbsetup();
+        this.db.dbsetup(game);
         this.db.setupItemLists();
         this.db.SetupEnemyList();
         game.PickEnemy(db.getEnemyList());
