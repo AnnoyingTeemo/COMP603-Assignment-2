@@ -26,8 +26,10 @@ public class Database {
     
     ArrayList<Item> playerItemList = new ArrayList<Item>();
     ArrayList<Item> itemList = new ArrayList<Item>();
+    ArrayList<String> saveNameList = new ArrayList<String>();
     
     ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    String saveName = "";
     
     public void dbsetup(){
         try {
@@ -255,5 +257,51 @@ public class Database {
         return enemyList;
     }
     
+    public void setupSaveList(){
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"PlayerSaves\"";
+            
+            String query = "SELECT PLAYERNAME FROM " + tableName;
+            System.out.println(query);
+            ResultSet set = statement.executeQuery(query);
+            while (set.next()){
+                String name = set.getString(1);
+                if (!saveNameList.contains(name)){
+                    saveNameList.add(name);
+                }
+            }
+            
+            statement.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> getSaveNameList() {
+        return saveNameList;
+    }
     
+    public void save(Ally player, Enemy enemy, String saveName){
+        try {
+            conn = DriverManager.getConnection(url, dbusername, dbpassword);
+            Statement statement = conn.createStatement();
+            String tableName = "RPG.\"PlayerSaves\"";
+            
+            String query = "INSERT INTO " + tableName + " VALUES('"+ saveName +"', '"+ player.getClassString() +"', "+ player.getBaseHealth() +", "+ player.getBaseDodge() +", "+ player.getBaseDamageReduction() +", "+ player.getBaseDamageModifier() +", "+ player.getBaseSpeed() +", "+ player.getBaseCritChance() +", "+ player.getHealth() +", "+ player.getDodge() +", "+ player.getDamageReduction() +", "+ player.getDamageModifier() +", "+ player.getSpeed() +", "+ player.getCritChance() +", "+ player.getCurrentHealth() +", '"+ player.getLeftHand() +"', '"+ player.getRightHand()+"', '"+ player.getClassDamage() +"', '"+ player.getClassDefensive() +"', "+ player.getLevel() +", "+ player.getDamageReductionBoost() +", "+ player.getDamageBoost() +", "+ player.getPassiveBuff() + ")";
+            System.out.println(query);
+//            statement.executeUpdate(query);
+            
+            statement.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteSave(String saveName){
+        
+    }
 }

@@ -24,6 +24,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class View extends JFrame{
@@ -39,7 +40,8 @@ public class View extends JFrame{
     
     private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
-    private JButton loadSaveButton = new JButton("Load Save");
+    public JButton loadSaveButton = new JButton("Load Save");
+    public JTextField saveNameInput = new JTextField("Test");
     
     //Select class
     private JLayeredPane classSelect = new JLayeredPane();
@@ -85,7 +87,8 @@ public class View extends JFrame{
         this.log.LogCount();
         this.itemList = new ItemList();
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -102,12 +105,17 @@ public class View extends JFrame{
         this.loadSaveButton.setText("Load Save");
         this.loadSaveButton.setLocation(310, 150);
         
+        this.saveNameInput.setSize(250, 30);
+        this.saveNameInput.setLocation(160, 200);
+        this.saveNameInput.setEnabled(false);
+        
         this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/beans.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
         this.backgroundImage.setSize(600, 600);
         
         this.startScreen.add(title);
         this.startScreen.add(startButton);
         this.startScreen.add(loadSaveButton);
+        this.startScreen.add(saveNameInput);
         this.startScreen.add(backgroundImage);
 
         this.add(startScreen);
@@ -129,6 +137,7 @@ public class View extends JFrame{
     public void UnloadStartMenu(){
         log.Log("Start Menu unloaded");
         this.startScreen.setVisible(false);
+        db.saveName = this.saveNameInput.getText();
     }
     
     public void LoadClassSelect(){
@@ -278,6 +287,10 @@ public class View extends JFrame{
     
     public void addActionListener(ActionListener listener){
         this.startButton.addActionListener(listener);
+        this.loadSaveButton.addActionListener(listener);
+        
+        this.saveNameInput.addActionListener(listener);
+        
         this.barbarian.addActionListener(listener);
         this.monk.addActionListener(listener);
         this.paladin.addActionListener(listener);

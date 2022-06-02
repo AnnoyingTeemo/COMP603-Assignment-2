@@ -37,6 +37,15 @@ public class Controller implements ActionListener{
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
         
+        if (e.getSource() == view.saveNameInput){
+            if (db.getSaveNameList().contains(command)){
+                view.loadSaveButton.setEnabled(true);
+            }
+            else{
+                view.loadSaveButton.setEnabled(false);
+            }
+        }
+        
         if (command.equals("Start Game")){
             view.UnloadStartMenu();
             view.LoadClassSelect();

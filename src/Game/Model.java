@@ -20,6 +20,7 @@ public class Model {
         this.db.setupItemLists();
         this.db.SetupEnemyList();
         game.PickEnemy(db.getEnemyList());
+        this.db.setupSaveList();
     }
 
     public Database getDb() {
@@ -28,5 +29,10 @@ public class Model {
 
     public Game getGame() {
         return game;
+    }
+    
+    public int saveAndClose(){
+        db.save(game.getPlayer(), game.getEnemy(), db.saveName);
+        return 3;
     }
 }
