@@ -41,8 +41,6 @@ public class Database {
             Statement statement = conn.createStatement();
             
             String tableName = "ItemList";
-            
-            statement.executeUpdate("DROP TABLE RPG.\"ItemList\"");
                     
             if (!checkTableExisting(tableName)) {
                 String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24), playerWeapon INT)";
