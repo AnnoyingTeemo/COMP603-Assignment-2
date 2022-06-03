@@ -1,0 +1,11 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Dealt 8 damage
+Dealt 2 damage
+Dealt 6 damage
+Dealt 2 damage
+Dealt 14 damage

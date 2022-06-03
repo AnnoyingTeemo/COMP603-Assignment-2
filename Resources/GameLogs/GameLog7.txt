@@ -1,0 +1,14 @@
+Start Menu unloaded
+Character select loaded
+Character Select Unloaded
+Weapon Select loaded
+Weapon Select unloaded
+Game Loaded
+Dealt 3 damage
+Dealt 9 damage
+Dealt 1 damage
+Dealt 7 damage
+Dealt 9 damage
+Dealt 6 damage
+Dealt 0 damage
+Dealt 9 damage

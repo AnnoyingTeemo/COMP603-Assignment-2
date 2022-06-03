@@ -41,7 +41,9 @@ public class Database {
             Statement statement = conn.createStatement();
             
             String tableName = "ItemList";
-
+            
+            statement.executeUpdate("DROP TABLE RPG.\"ItemList\"");
+                    
             if (!checkTableExisting(tableName)) {
                 String query = "CREATE TABLE \"" + tableName + "\" (damageItem INT, itemName VARCHAR(24), maxRoll INT, minRoll INT, buffType VARCHAR(24), damageType VARCHAR(24), playerWeapon INT)";
                 System.out.println(query);
@@ -118,6 +120,9 @@ public class Database {
             
             for (Item item : itemList.getList()){
                 this.itemList.add(item);
+                if (item.getIsPlayerItem() == 1){
+                    this.playerItemList.add(item);
+                }
                 if (item.isDamageItem()){
                     String query = "INSERT INTO " + tableName + " VALUES(1, '" + item.getItemName() + "', " + item.getBaseDamageMaxRoll()+ ", " + item.getBaseDamageMinRoll()+ ", NULL, '" + item.getDamageType().toString() + "', "+ item.getIsPlayerItem() +")";
                     System.out.println(query);
