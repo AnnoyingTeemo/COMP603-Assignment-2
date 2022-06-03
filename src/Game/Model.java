@@ -13,7 +13,7 @@ public class Model {
     private Database db;
     Game game;
     
-    public Model() {
+    public Model() {//sets up db and game info
         game = new Game();
         this.db = new Database();
         this.db.dbsetup(game);
@@ -31,6 +31,7 @@ public class Model {
         return game;
     }
     
+    //saves when person presses the x button
     public void saveAndClose(){
         db.deleteSave(db.saveName);
         db.save(game.getPlayer(), game.getEnemy(), db.saveName);

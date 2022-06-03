@@ -47,7 +47,6 @@ public class View extends JFrame{
     private JLayeredPane startScreen = new JLayeredPane();
     private JLabel title = new JLabel("FUNNY GAME NAME THE GAME");
     
-//    private JLabel backgroundImage = new JLabel();
     private JButton startButton = new JButton("Start Game");
     public JButton loadSaveButton = new JButton("Load Save");
     public JTextField saveNameInput = new JTextField();
@@ -87,6 +86,7 @@ public class View extends JFrame{
     
     public boolean gameLoaded = false;
     
+    //start screen gui stuff
     public View(Model model) {
         this.model = model;
         this.db = model.getDb();
@@ -129,14 +129,10 @@ public class View extends JFrame{
         this.saveNameInput.setDocument(new LimitJTextField(23));
         this.saveNameInput.setText("Save Name, Enter Saves");
         
-//        this.backgroundImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("../Images/smoke1.jpg")).getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT)));
-//        this.backgroundImage.setSize(600, 600);
-        
         this.startScreen.add(title);
         this.startScreen.add(startButton);
         this.startScreen.add(loadSaveButton);
         this.startScreen.add(saveNameInput);
-//        this.startScreen.add(backgroundImage);
 
         this.add(startScreen);
         this.setVisible(true);
@@ -154,6 +150,7 @@ public class View extends JFrame{
         this.itemButtonList.add(Item4);
     }
     
+    //hide start menu
     public void UnloadStartMenu(){
         log.Log("Start Menu unloaded");
         this.startScreen.setVisible(false);
@@ -161,6 +158,7 @@ public class View extends JFrame{
         db.saveName = db.saveName.replaceAll("[^a-zA-Z0-9]", "");
     }
     
+    //load class select
     public void LoadClassSelect(){
         log.Log("Character select loaded");
         
@@ -182,11 +180,13 @@ public class View extends JFrame{
         this.add(classSelect);
     }
     
+    //hide class select
     public void UnloadClassSelect(){
         log.Log("Character Select Unloaded");
         this.classSelect.setVisible(false);
     }
     
+    //load weapon select
     public void LoadWeaponSelect(){
         log.Log("Weapon Select loaded");
         
@@ -221,11 +221,13 @@ public class View extends JFrame{
         this.add(weaponsSelect);
     }
     
+    //hide weapon select
     public void UnloadWeaponSelect(){
         log.Log("Weapon Select unloaded");
         this.weaponsSelect.setVisible(false);
     }
     
+    //load the game gui
     public void LoadGame(){
         log.Log("Game Loaded");
         gameLoaded = true;
@@ -285,12 +287,14 @@ public class View extends JFrame{
         this.gamePane.setVisible(true);
     }
     
+    //hide the game gui
     public void UnloadGame(){
         log.Log("Game Unloaded");
         gameLoaded = false;
         this.gamePane.setVisible(false);
     }
     
+    //refresh the game panel
     public void RefreshGame(){
         this.enemyName.setText(game.getEnemy().getName());
         int enemyCurrentHealthText = game.getEnemy().getCurrentHealth();
@@ -325,6 +329,7 @@ public class View extends JFrame{
         }
     }
     
+    //load game over screen
     public void GameOverScreen(){
         gameOverText.setSize(500, 200);
         gameOverText.setLocation(150, 100);
@@ -344,6 +349,7 @@ public class View extends JFrame{
     }
 }
 
+//stopping non letters no sql injections allowed
 class LimitJTextField extends PlainDocument 
 {
     private int max;

@@ -32,7 +32,7 @@ public class Controller implements ActionListener{
         this.db = db;
     }
     
-    
+    //checks for various actions
     @Override
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
@@ -116,6 +116,7 @@ public class Controller implements ActionListener{
         }
     }
     
+    //creating a new player
     public Ally selectClass(){
         if (playerClass.equals("Barbarian")){
             return new Barbarian(item1, item2);

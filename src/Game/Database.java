@@ -33,9 +33,9 @@ public class Database {
     
     Game game;
     
-    public void dbsetup(Game game){
+    public void dbsetup(Game game){//Setting up db
         this.game = game;
-        
+        //checking if all the tables exist and if they dont make them and populate the itemlist and enemyList
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
@@ -75,15 +75,14 @@ public class Database {
                 System.out.println(query);
                 statement.executeUpdate(query);
             }
-            //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
 
         } catch (Exception e) {
             e.printStackTrace();
-//            System.out.println(e.printStackTrace());
         }
     }
     
+    //Checks that the table exists
     private boolean checkTableExisting(String newTableName) {
         boolean flag = false;
         try {
@@ -107,6 +106,7 @@ public class Database {
         return flag;
     }
     
+    //filling the item database with items from itemlist
     public void fillItemDatabase(){
         System.out.println("Filling Database");
         
@@ -139,6 +139,7 @@ public class Database {
         }
     }
     
+    //filling the enemy database with enemys from enemylist
     public void fillEnemyDatabase(){
         System.out.println("Filling Database");
         
@@ -160,6 +161,7 @@ public class Database {
         }
     }
     
+    //making a list of items by pulling from itemlist table, makes a list of weapons the player can pick from and a list of all items including ones the enemies can use
     public void setupItemLists(){
         if (itemList.size() == 0){
             try {
@@ -233,6 +235,7 @@ public class Database {
         return itemArrayList;
     }
     
+    //sets up the list of enemies by pulling from table
     public void SetupEnemyList(){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
@@ -253,6 +256,7 @@ public class Database {
         }
     }
     
+    //find an item using its name
     public Item GetItemByName(String name){
         for(Item item : this.itemList){
             if (item.getItemName().equals(name)){
@@ -267,6 +271,7 @@ public class Database {
         return enemyList;
     }
     
+    //make a list of save names
     public void setupSaveList(){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
@@ -294,6 +299,7 @@ public class Database {
         return saveNameList;
     }
     
+    //save the game
     public void save(Ally player, Enemy enemy, String saveName){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
@@ -340,6 +346,7 @@ public class Database {
         }
     }
     
+    //delete old save using its save name
     public void deleteSave(String saveName){
         if (saveNameList.contains(saveName)){
             try {
@@ -365,6 +372,7 @@ public class Database {
         }
     }
     
+    //load a save
     public void LoadSave(String saveName){
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);

@@ -20,6 +20,7 @@ public class Game {
         this.player = ally;
     }
     
+    //picks a random enemy to fight
     public Enemy PickEnemy(ArrayList<Enemy> enemyList){
         int max = enemyList.size() -1;
         int min = 0;
